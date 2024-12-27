@@ -1,0 +1,18 @@
+{
+    "name": "defre/fructus",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Config\\": "config/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DfrtJulien",
+            "email": "de.freitas.julien78@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*"
+    }
+}
