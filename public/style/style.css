@@ -24,7 +24,8 @@ h6 {
 }
 
 p,
-a {
+a,
+label {
 	font-family: "Roboto", serif;
 	font-weight: 400;
 	font-style: normal;
@@ -44,6 +45,10 @@ a {
 	left: 0;
 	right: 0;
 	z-index: 2;
+}
+
+.myNavOrange {
+	background-color: var(--main-color);
 }
 
 .burger {
@@ -194,6 +199,56 @@ a {
 	border-radius: 8px;
 	margin-left: 15px;
 	margin-top: 15px;
+}
+
+/********************************************************* INSCRIPTION ******************************************/
+
+.registerContainer {
+	background-color: rgb(236, 234, 234);
+	width: 100%;
+	min-height: 70vh;
+	display: block;
+	padding-top: 60px;
+}
+
+.form {
+	width: 95%;
+	margin: auto;
+	background-color: white;
+	border-radius: 12px;
+}
+
+.form h1 {
+	text-align: center;
+	padding: 15px;
+	font-size: 35px;
+}
+
+.form label {
+	width: 100%;
+	padding: 5px 15px;
+	font-size: 18px;
+}
+
+.form input {
+	padding: 10px;
+	width: 95%;
+	margin: 15px 10px;
+}
+
+.errorContainer {
+	width: 95%;
+	margin: auto;
+}
+
+.registerBtn {
+	width: 100%;
+	border: none;
+	background-color: var(--main-color);
+	color: var(--white-clr);
+	font-size: 20px;
+	padding: 20px;
+	border-radius: 0 0 8px 8px;
 }
 
 /************************************** FOOTER *****************************/
@@ -407,6 +462,27 @@ a {
 	.recipeContainer {
 		padding: 50px 95px;
 	}
+
+	/********************************************************* INSCRIPTION ******************************************/
+
+	.registerContainer {
+		min-height: 80vh;
+	}
+
+	.form {
+		width: 50%;
+	}
+
+	.form input {
+		margin: 10px 10px;
+	}
+
+	.errorContainer {
+		width: 95%;
+		margin: auto;
+		margin: 5px 10px;
+	}
+
 
 	/************************************** FOOTER *****************************/
 	.myFooter {

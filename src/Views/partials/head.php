@@ -31,7 +31,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item d-flex">
                         <a class="nav-link nav-link-white" href="/">Recettes</a>
-                        <a class="nav-link nav-link-white" href="/">Connexion</a>
+                        <a class="nav-link nav-link-white" href="/register">Inscription</a>
                     </li>
                 </ul>
             </div>
