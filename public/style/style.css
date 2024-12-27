@@ -1,29 +1,416 @@
-h1 {
-	background-color: #e8e8f2;
-	padding: 20px;
-	text-align: center;
-	color: #0e3698;
-}
-.myNav {
-	background-color: #86c6f6;
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+	--main-color: #F88838;
+	--white-clr: rgb(245, 245, 245);
+	--black-clr: #121212;
 }
 
-.myBody {
-	background-image: url("/public/img/fond.jpeg");
-	background-size: cover;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Pacifico", serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+p,
+a {
+	font-family: "Roboto", serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/************************************************** NAVBAR  **********************************************/
+
+.myNav {
+	position: fixed;
+	padding: 10px;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 2;
+}
+
+.burger {
+	margin-right: 20px;
+	font-size: 20px;
+	color: var(--white-clr);
+}
+
+.title {
+	font-size: 26px;
+	color: var(--white-clr);
+}
+
+.searchContainer {
+	display: none;
+}
+
+.nav-link-white {
+	color: var(--white-clr);
+}
+
+/************************************************* HOME ****************************************************/
+
+.hero {
+	position: relative;
+}
+
+.img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.img-container-header {
+	height: 350px;
+}
+
+.hero-title {
+	width: 80%;
+	margin: auto;
+	position: absolute;
+	left: 10%;
+	top: 15%;
+}
+
+.hero h1,
+.hero p {
+
+	color: var(--white-clr);
+}
+
+.hero h1 {
+	font-size: 45px;
+	margin-top: 40px;
+}
+
+.hero p {
+	font-size: 18px;
+	padding-bottom: 100px;
+}
+
+.learnMore {
+	width: 95%;
+	margin: 20px auto
+}
+
+.comunity,
+.recipe,
+.createYourRecipe {
+	display: flex;
+}
+
+.img-container-comunity,
+.img-container-recipe,
+.img-container-createYourRecipe {
+	width: 75%
+}
+
+.comunityText,
+.createYourRecipeText {
+	padding-top: 10px;
+	margin-left: 15px;
+	width: 70%;
+	padding-bottom: 10px;
+}
+
+.comunityText h4,
+.recipeText h4,
+.createYourRecipe h4 {
+	font-size: 18px;
+}
+
+.comunityText p,
+.recipeText p,
+.createYourRecipe p {
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+
+.comunityText a,
+.recipeText a {
+	transition: all 0.5s ease;
+	font-weight: bold;
+}
+
+.comunityText a:hover,
+.recipeText a:hover {
+	color: var(--main-color);
+}
+
+.recipeText {
+	margin-top: 15px;
+	margin-right: 15px;
+	width: 70%;
+	padding-bottom: 10px;
+}
+
+.productFilterHome {
+	position: relative;
+}
+
+.recipeFilterContainer {
+	position: absolute;
+	top: 10%;
+	right: 5%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.recipeFlex {
+	display: flex;
+	flex-wrap: wrap;
+	width: 200px;
+	margin: auto;
+}
+
+.filterLogo {
+	width: 20px;
+}
+
+.recipeContainer h6 {
+	color: var(--white-clr);
+}
+
+.recipeContainer {
+	background-color: rgba(255, 255, 255, 0.329);
+	padding: 5px 15px;
+	border-radius: 8px;
+	margin-left: 15px;
+	margin-top: 15px;
+}
+
+/************************************** FOOTER *****************************/
 .myFooter {
-	background-color: black;
+	background-color: var(--black-clr) !important;
+	color: var(--white-clr);
+	padding: 25px;
 }
-.bgp {
-	background-color: #7b2fd1;
+
+.myFooter i {
+	margin-left: 15px;
 }
-.bgb {
-	background-color: #0e3698;
+
+.myFooter p {
+	margin-top: 5px;
 }
-.bgbc {
-	background-color: #86c6f6;
+
+@media screen and (min-width: 698px) {
+
+	/************************************************** NAVBAR  **********************************************/
+
+	.searchContainer {
+		width: 70%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.searchInput {
+		width: 50%;
+		margin-right: 15px;
+		border-radius: 8px;
+		padding: 5px;
+		border: none;
+	}
+
+	.searchIcon {
+		font-size: 20px;
+		color: var(--white-clr);
+	}
+
+	/************************************************* HOME ****************************************************/
+
+	.hero {
+		height: 500px;
+	}
+
+	.img-container {
+		height: 100%;
+	}
+
+	.img-container img {
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.hero-title {
+		width: 80%;
+		margin: auto;
+	}
+
+	.hero h1,
+	.hero p {
+		padding-left: 100px;
+		color: var(--white-clr);
+	}
+
+	.hero h1 {
+		font-size: 45px;
+		margin-top: 40px;
+	}
+
+	.hero p {
+		font-size: 18px;
+		padding-bottom: 100px;
+	}
+
+	.recipeFlex {
+		width: 400px;
+		padding-left: 50px;
+	}
+
+	.filterLogo {
+		width: 30px;
+		margin-bottom: 10px;
+	}
+
+	.recipeContainer {
+		background-color: rgba(255, 255, 255, 0.329);
+		padding: 20px 55px;
+	}
+
+	/************************************** FOOTER *****************************/
+	.myFooter {
+		display: flex;
+		justify-content: space-around;
+	}
+
 }
-.bgg {
-	background-color: #e8e8f2;
+
+
+@media screen and (min-width: 1200px) {
+
+	/************************************************* HOME ****************************************************/
+
+	.hero {
+		height: 600px;
+	}
+
+	.hero-title {
+		width: 60%;
+		margin: auto;
+		text-align: center;
+	}
+
+	.hero h1,
+	.hero p {
+		color: var(--white-clr);
+	}
+
+	.hero h1 {
+		font-size: 85px;
+	}
+
+	.hero p {
+		font-size: 45px;
+		width: 60%;
+		margin: auto;
+	}
+
+	.learnMore {
+		display: flex;
+		width: 95%;
+		margin: 50px auto;
+	}
+
+	.comunity,
+	.recipe,
+	.createYourRecipe {
+		display: block;
+		width: 600px;
+	}
+
+	.img-container-comunity,
+	.img-container-recipe,
+	.img-container-createYourRecipe {
+		width: 100%;
+		height: 281px;
+	}
+
+	.comunityText,
+	.createYourRecipeText {
+		margin-top: 50px;
+		padding: 10px;
+		height: 270px;
+		width: fit-content;
+	}
+
+	.comunityText h4,
+	.recipeText h4,
+	.createYourRecipe h4 {
+		font-size: 35px;
+		text-decoration: underline;
+		text-decoration-color: var(--main-color);
+	}
+
+	.comunityText p,
+	.recipeText p,
+	.createYourRecipe p {
+		font-size: 24px;
+	}
+
+	.comunityText a,
+	.recipeText a {
+		transition: all 0.5s ease;
+		font-weight: bold;
+	}
+
+	.comunityText a:hover,
+	.recipeText a:hover {
+		color: var(--main-color);
+	}
+
+	.recipeText {
+		margin-top: 15px;
+		padding: 10px;
+		height: 270px;
+		width: fit-content;
+	}
+
+	.productFilterHome {
+		height: 400px;
+	}
+
+	.recipeFilterContainer {
+		right: 5%;
+	}
+
+	.recipeFlex {
+		width: 600px;
+	}
+
+	.filterLogo {
+		width: 20px;
+	}
+
+	.recipeContainer h6 {
+		color: var(--white-clr);
+	}
+
+	.recipeContainer {
+		padding: 50px 95px;
+	}
+
+	/************************************** FOOTER *****************************/
+	.myFooter {
+		padding: 45px;
+	}
+
 }
