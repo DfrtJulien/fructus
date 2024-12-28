@@ -31,8 +31,24 @@
                 <ul class="navbar-nav">
                     <li class="nav-item d-flex">
                         <a class="nav-link nav-link-white" href="/">Recettes</a>
-                        <a class="nav-link nav-link-white" href="/register">Inscription</a>
+                        <?php
+                        if (!isset($_SESSION['user'])) {
+                        ?>
+
+                            <a class="nav-link nav-link-white" href="/register">Inscription</a>
+                            <a class="nav-link nav-link-white" href="/login">Connexion</a>
                     </li>
+                <?php
+                        } else {
+                ?>
+
+                    <a class="nav-link nav-link-white" href="/">Mon profil</a>
+                    <a class="nav-link nav-link-white" href="/">Déconnexion</a>
+                    </li>
+                <?php
+                        }
+                ?>
+
                 </ul>
             </div>
         </div>

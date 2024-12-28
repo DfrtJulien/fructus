@@ -40,6 +40,24 @@ class Users
     return $statement->fetch();
   }
 
+  public function login($mail)
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "SELECT * FROM `users` WHERE email = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$mail]);
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+      if ($row['id_role'] === 1) {
+        return new Users($row['id'], $row['username'], $row['email'], $row['password'], $row['id_role']);
+      } elseif ($row['id_role'] === 2) {
+        return new Users($row['id'], $row['username'], $row['email'], $row['password'], $row['id_role']);
+      } else {
+        return null;
+      }
+    }
+  }
+
   public function getId(): ?int
   {
     return $this->id;
@@ -55,10 +73,16 @@ class Users
     return $this->password;
   }
 
-  public function getName(): ?string
+  public function getUsername(): ?string
   {
     return $this->username;
   }
+
+  public function getIdRole(): ?int
+  {
+    return $this->id_role;
+  }
+
 
   public function setId(int $id): static
   {
