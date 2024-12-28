@@ -20,7 +20,7 @@ require_once(__DIR__ . "/partials/head.php");
             <h4>Comunnauté</h4>
             <p>Rejoignez nous passionnées de patisseries, de tout âge, professionnelle ou amateur.</p>
             <div class="comunityLink">
-                <a href="">Inscrivez vous </a>
+                <a href="/register">Inscrivez vous </a>
                 <i class="fa-solid fa-arrow-right"></i>
             </div>
         </div>

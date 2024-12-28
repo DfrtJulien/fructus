@@ -83,4 +83,10 @@ class UsersController extends AbstractController
         }
         require_once(__DIR__ . '/../Views/security/login.view.php');
     }
+
+    public function logout()
+    {
+        session_destroy();
+        $this->redirectToRoute("/");
+    }
 }
