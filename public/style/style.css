@@ -447,7 +447,7 @@ a {
 
 	.comunityText,
 	.createYourRecipeText {
-		margin-top: 50px;
+		margin-top: 20px;
 		padding: 10px;
 		height: 270px;
 		width: fit-content;
@@ -479,8 +479,8 @@ a {
 	}
 
 	.recipeText {
-		margin-top: 15px;
-		padding: 10px;
+		margin-top: 20px;
+		margin-left: 20px;
 		height: 270px;
 		width: fit-content;
 	}

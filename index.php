@@ -14,5 +14,7 @@ $router->addRoute('/', 'HomeController', 'index');
 $router->addRoute('/register', 'UsersController', 'register');
 // page connexion
 $router->addRoute('/login', 'UsersController', 'login');
+// se déconecter
+$router->addRoute('/logout', 'UsersController', 'logout');
 
 $router->handleRequest();

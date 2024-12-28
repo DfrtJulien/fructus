@@ -43,7 +43,7 @@
         ?>
 
           <a class="nav-link nav-link-white" href="/">Mon profil</a>
-          <a class="nav-link nav-link-white" href="/">Déconnexion</a>
+          <a class="nav-link nav-link-white" href="/logout">Déconnexion</a>
           </li>
         <?php
             }
