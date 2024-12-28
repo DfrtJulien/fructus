@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 <secction class="registerContainer">
 
     <div class="form">
-        <h1>S'inscire</h1>
+        <h1>S'inscrire</h1>
         <form method="POST">
             <label for="name" id="name">Votre nom</label>
             <input type="text" name="name">
@@ -39,7 +39,12 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
             <?php
             }
             ?>
-            <button type="submit" class="registerBtn">S'inscrire</button>
+            <div class="registerLoginContainer">
+                <button type="submit" class="registerBtn">S'inscrire</button>
+                <p>Ou</p>
+                <a href="/login" class="loginLink">Se connecter</a>
+            </div>
+
         </form>
     </div>
 </secction>
