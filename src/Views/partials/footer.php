@@ -11,6 +11,7 @@
     <p>© Copyright : Julien <?php echo date("Y") ?></p>
     <p>Nous contacter</p>
 </footer>
+<script type="text/javascript" src="/public/js/script.js"></script>
 </body>
 
 </html>

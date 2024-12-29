@@ -25,10 +25,16 @@ h6 {
 
 p,
 a,
-label {
+label,
+li,
+ul {
 	font-family: "Roboto", serif;
 	font-weight: 400;
 	font-style: normal;
+}
+
+li {
+	list-style: none;
 }
 
 a {
@@ -68,6 +74,47 @@ a {
 
 .nav-link-white {
 	color: var(--white-clr);
+}
+
+.hidden {
+	display: none;
+}
+
+.visible {
+	display: block;
+}
+
+.menu {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 5;
+	width: 50%;
+	height: 100%;
+	background-color: var(--white-clr);
+	padding: 15px;
+	transition: all 0.5s;
+}
+
+.menu h3 {
+	margin-left: 10px;
+	margin-bottom: 10px;
+	color: var(--main-color);
+}
+
+.menu li {
+	margin-top: 5px;
+}
+
+.close-menu {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+#open-menu:hover,
+.close-menu:hover {
+	cursor: pointer;
 }
 
 /************************************************* HOME ****************************************************/
@@ -397,6 +444,27 @@ a {
 
 
 @media screen and (min-width: 1200px) {
+
+
+	/*************************************************** NAVABR ********************************************/
+
+	.menu {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 60px;
+		height: fit-content;
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	.close-menu {
+		position: absolute;
+		top: 15px;
+		right: 45px;
+	}
+
 
 	/************************************************* HOME ****************************************************/
 
