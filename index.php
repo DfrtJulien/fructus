@@ -17,4 +17,8 @@ $router->addRoute('/login', 'UsersController', 'login');
 // se déconecter
 $router->addRoute('/logout', 'UsersController', 'logout');
 
+//ajoutez une recette
+$router->addRoute('/addRecipe', 'RecipeController', 'addRecipe');
+
+
 $router->handleRequest();

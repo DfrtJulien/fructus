@@ -5,6 +5,15 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 
     <div class="form">
         <h1>S'inscrire</h1>
+        <?php
+        if (isset($succesMsg)) {
+        ?>
+            <div class="alert alert-success errorContainer" role="alert">
+                <p class='text-success'><?= $succesMsg['register'] ?></p>
+            </div>
+        <?php
+        }
+        ?>
         <form method="POST">
             <label for="name" id="name">Votre nom</label>
             <input type="text" name="name">

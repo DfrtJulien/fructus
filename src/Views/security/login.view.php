@@ -2,7 +2,6 @@
 require_once(__DIR__ . "/../partials/headerOrange.php");
 ?>
 <secction class="registerContainer">
-
   <div class="form">
     <h1>Se connecter</h1>
     <form method="POST">

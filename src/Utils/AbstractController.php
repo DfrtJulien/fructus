@@ -49,6 +49,11 @@ abstract class AbstractController
     }
   }
 
+  public function showMsg()
+  {
+    $this->arraySucces['register'] = "Inscription réussi !";
+    return $this->arraySucces;
+  }
 
   public function check($nameInput, $value)
   {
