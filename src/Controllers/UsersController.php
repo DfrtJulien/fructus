@@ -29,7 +29,11 @@ class UsersController extends AbstractController
 
                 // si il n'existe pas je l'enregistre dans ma BDD
                 if (!$userExist) {
-                    $user->register();
+                    // $user->register();
+                    $succesMsg = $this->showMsg();
+                    if ($succesMsg) {
+                        header("Refresh: 2; /login");
+                    }
                 } else {
                     // sinon je le redirige vers la page de connexion
                     $this->redirectToRoute('/login');

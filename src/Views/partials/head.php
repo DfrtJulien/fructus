@@ -44,6 +44,13 @@
 
                     <a class="nav-link nav-link-white" href="/">Mon profil</a>
                     <a class="nav-link nav-link-white" href="/logout">Déconnexion</a>
+                    <?php
+                            if ($_SESSION['user']["id_role"] == 1) {
+                    ?>
+                        <a class="nav-link nav-link-white" href="/addRecipe">Ajoutez une recette</a>
+                    <?php
+                            }
+                    ?>
                     </li>
                 <?php
                         }
