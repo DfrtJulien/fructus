@@ -21,7 +21,16 @@ class RecipeController extends AbstractController
           $created_at = date("Y-m-d");
           $id_user = $_SESSION['user']["id_user"];
 
-          $recipe = new Recipe(null, $title, $description, $recipe, null, $dificulty, $time, $created_at, $id_user, null, null);
+          // chemin pour stocker les images
+          $target_dir = "public/img/";
+          $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+          if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            $img = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
+            $img_path =  $img;
+          }
+
+          $recipe = new Recipe(null, $title, $description, $recipe, $img_path, $dificulty, $time, $created_at, $id_user, null, null);
           $recipe->addRecipe();
 
           // je recupere l'id de la recette
