@@ -259,7 +259,8 @@ a {
 	padding-bottom: 60px;
 }
 
-.form {
+.form,
+.addRecipeForm {
 	width: 95%;
 	margin: auto;
 	background-color: white;
@@ -267,20 +268,25 @@ a {
 	padding-bottom: 30px;
 }
 
-.form h1 {
+.form h1,
+.addRecipeForm h1 {
 	text-align: center;
 	padding: 15px;
 	font-size: 35px;
 }
 
-.form label {
+.form label,
+.addRecipeForm label {
 	width: 100%;
 	padding: 5px 15px;
 	font-size: 18px;
 	margin-top: 10px;
 }
 
-.form input {
+.form input,
+.addRecipeForm input,
+.addRecipeForm textarea,
+.addRecipeForm select {
 	width: 95%;
 	margin: 0 10px 20px 10px;
 	border: none;
@@ -288,7 +294,8 @@ a {
 	transition: all 0.4s ease;
 }
 
-.form input:focus {
+.form input:focus,
+.addRecipeForm input:focus {
 	outline: none;
 	border-bottom: 1px solid var(--main-color);
 }
@@ -345,6 +352,28 @@ a {
 }
 
 /************************************************************* ADD RECIPE **********************************/
+
+#fileToUpload {
+	border: none;
+}
+
+.addRecipeForm textarea {
+	border: 1px solid var(--black-clr);
+	padding: 10px;
+	font-size: 18px;
+}
+
+.addRecipeForm select {
+	padding: 10px;
+	background-color: var(--main-color);
+	color: white;
+	border: none;
+	border-radius: 8px;
+}
+
+.addRecipeForm option:focus {
+	background-color: #121212;
+}
 
 .imgIngredientContainer {
 	display: flex;

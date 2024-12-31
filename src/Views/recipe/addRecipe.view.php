@@ -15,7 +15,9 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 		<?php
 		}
 		?>
-		<form method="POST">
+		<form method="POST" enctype="multipart/form-data" class="addRecipeForm">
+			<label for="fileToUpload">Ajouter votre photo de la recette :</label>
+			<input type="file" name="fileToUpload" id="fileToUpload">
 			<label for="title" id="title">Titre de la recette</label>
 			<input type="text" name="title">
 			<?php
