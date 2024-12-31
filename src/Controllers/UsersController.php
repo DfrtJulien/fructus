@@ -73,7 +73,7 @@ class UsersController extends AbstractController
                             'username' => $getUser->getUsername(),
                             'mail' => $getUser->getMail(),
                             'idUser' => $getUser->getId(),
-                            'id' => $getUser->getId(),
+                            'id_user' => $getUser->getId(),
                             'id_role' => $getUser->getIdRole()
                         ];
                         $this->redirectToRoute('/');

@@ -6,8 +6,49 @@ namespace App\Utils;
 abstract class AbstractController
 {
   protected array $arrayError = [];
-  protected array  $cart = [];
   protected array $arraySucces = [];
+  protected array $ingredientExist = [];
+  protected array $ingredients = [];
+
+  public function ingredientExist()
+  {
+    // je crée un tableau contenant tout les ingrédient disponible
+    $checkIngredient = ["eggs", "milk", "sugar", "butter"];
+
+    foreach ($checkIngredient as $ingredient) {
+      // je fait une boucle et je regarde si je récupère en post la valeur
+      if (isset($_POST[$ingredient])) {
+        // si il existe je l'ajoute dans un tableau
+        $this->ingredientExist[$ingredient] = $_POST[$ingredient];
+      } else {
+        // sinon il est null
+        $this->ingredientExist[$ingredient] = null;
+      }
+    }
+
+    return $this->ingredientExist;
+  }
+
+
+  public function addIngredient($array)
+  {
+
+    foreach ($array as $value => $quantity) {
+      // je check si le tableau contenant tout mes ingrédient a une valeur nul
+      if ($quantity) {
+        // si ce n'est pas null je l'ajoute a ce tableau enelevant tout les NULL du tableau précédent
+        $this->ingredients[$value] = $quantity;
+      }
+    }
+    return $this->ingredients;
+  }
+
+  public function test($array)
+  {
+    foreach ($array as $key => $value) {
+      var_dump($value . " " . $key);
+    }
+  }
 
   public function redirectToRoute($route)
   {

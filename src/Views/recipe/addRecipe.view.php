@@ -70,7 +70,7 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 						<img src="/public/img/sugar.jpg" alt="sugar" id="imgIngredient">
 					</div>
 					<div class="imgRecipe">
-						<img src="/public/img/beurre.jpg" alt="beurre" id="imgIngredient">
+						<img src="/public/img/beurre.jpg" alt="butter" id="imgIngredient">
 					</div>
 				</div>
 			</div>
