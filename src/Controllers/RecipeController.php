@@ -13,13 +13,13 @@ class RecipeController extends AbstractController
 
     if ($_SESSION['user']["id_role"] == 1) { {
         if (isset($_POST['title'], $_POST['description'],  $_POST['recipe'], $_POST['time'], $_POST['dificulty'])) {
-          $title = $_POST['title'];
-          $description = $_POST['description'];
-          $recipe = $_POST['recipe'];
-          $time = $_POST['time'];
-          $dificulty = $_POST['dificulty'];
+          $title = htmlspecialchars($_POST['title']);
+          $description = htmlspecialchars($_POST['description']);
+          $recipe = htmlspecialchars($_POST['recipe']);
+          $time = htmlspecialchars($_POST['time']);
+          $dificulty = htmlspecialchars($_POST['dificulty']);
           $created_at = date("Y-m-d");
-          $id_user = $_SESSION['user']["id_user"];
+          $id_user = htmlspecialchars($_SESSION['user']["id_user"]);
 
           // chemin pour stocker les images
           $target_dir = "public/img/";
@@ -66,5 +66,21 @@ class RecipeController extends AbstractController
 
 
     require_once(__DIR__ . "/../Views/recipe/showAllRecipes.view.php");
+  }
+
+  public function showRecipe()
+  {
+    if (isset($_GET['id_recipe'])) {
+
+      $id_recipe = htmlspecialchars($_GET['id_recipe']);
+      $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, null, null, null);
+      $myRecipe = $recipe->getRecipeByid();
+      $myIngredient = $recipe->getIngredientByRecipeId();
+
+
+      require_once(__DIR__ . '/../Views/recipe/showRecipe.view.php');
+    } else {
+      $this->redirectToRoute('/error404');
+    }
   }
 }

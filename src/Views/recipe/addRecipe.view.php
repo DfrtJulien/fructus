@@ -64,24 +64,24 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 			<input type="number" name="time">
 			<label for="dificulty">Niveau de difficulté de la recette</label>
 			<select name="dificulty" id="dificulty">
-				<option value="easy">Débutant</option>
-				<option value="medium">Moyen</option>
-				<option value="hard">Expert</option>
+				<option value="facile">Débutant</option>
+				<option value="moyen">Moyen</option>
+				<option value="expert">Expert</option>
 			</select>
 			<label for="ingredient">Ingrédients utilisé</label>
 			<div id="ingredientContainer">
 				<div class="imgIngredientContainer">
 					<div class="imgRecipe">
-						<img src="/public/img/eggs.jpg" alt="eggs" id="imgIngredient">
+						<img src="/public/img/oeuf.jpg" alt="oeuf" id="imgIngredient">
 					</div>
 					<div class="imgRecipe">
-						<img src="/public/img/milk.jpg" alt="milk" id="imgIngredient">
+						<img src="/public/img/lait.jpg" alt="lait" id="imgIngredient">
 					</div>
 					<div class="imgRecipe">
-						<img src="/public/img/sugar.jpg" alt="sugar" id="imgIngredient">
+						<img src="/public/img/sucre.jpg" alt="sucre" id="imgIngredient">
 					</div>
 					<div class="imgRecipe">
-						<img src="/public/img/beurre.jpg" alt="butter" id="imgIngredient">
+						<img src="/public/img/beurre.jpg" alt="beurre" id="imgIngredient">
 					</div>
 				</div>
 			</div>

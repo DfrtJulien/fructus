@@ -82,6 +82,39 @@ class Recipe
     }
   }
 
+  public function getRecipeByid()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "SELECT * FROM `recipes` WHERE id = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id]);
+    $recipe = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if ($recipe) {
+      return new Recipe($recipe['id'], $recipe['title'], $recipe['description'], $recipe['instructions'], $recipe['img_path'], $recipe['difficulty'], $recipe['time'], null, null, null, null);
+    } else {
+      return null;
+    }
+  }
+
+  public function getIngredientByRecipeId()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "SELECT * FROM `ingredients` WHERE id_recipe = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id]);
+    $fetchedIngredient = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $ingredients = [];
+    if ($fetchedIngredient) {
+      foreach ($fetchedIngredient as $ingredient) {
+        $ingredients[] = new Recipe(null, null, null, null, null, null, null, null, null, $ingredient['name'], $ingredient['quantity']);
+      }
+      return $ingredients;
+    } else {
+      return null;
+    }
+  }
+
   public function getId(): ?int
   {
     return $this->id;
@@ -125,5 +158,15 @@ class Recipe
   public function getId_user(): ?int
   {
     return $this->id_user;
+  }
+
+  public function getIngredient_name(): ?string
+  {
+    return $this->ingredient_name;
+  }
+
+  public function getIngredient_quantity(): ?int
+  {
+    return $this->ingredient_quantity;
   }
 }

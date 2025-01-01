@@ -14,14 +14,16 @@ require_once(__DIR__ . "/../partials/head.php");
 			foreach ($allRecipes as $recipe) {
 
 			?>
-				<div class="allRecipe">
-					<div class="imgRecipeContainer">
-						<img src="/public/img/<?= $recipe->getImg() ?>" alt="<?= $recipe->getTitle() ?>" class="recipeImg">
+				<a href="/recipe?id_recipe=<?= $recipe->getId() ?>">
+					<div class="allRecipe">
+						<div class="imgRecipeContainer">
+							<img src="/public/img/<?= $recipe->getImg() ?>" alt="<?= $recipe->getTitle() ?>" class="recipeImg">
+						</div>
+						<h5 class="recipeTitle"><?= $recipe->getTitle() ?></h5>
+						<i class="fa-solid fa-heart likeIcon"></i>
+						<i class="fa-regular fa-heart likeIcon"></i>
 					</div>
-					<h5 class="recipeTitle"><?= $recipe->getTitle() ?></h5>
-					<i class="fa-solid fa-heart likeIcon"></i>
-					<i class="fa-regular fa-heart likeIcon"></i>
-				</div>
+				</a>
 			<?php
 			}
 			?>
