@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item d-flex">
-                        <a class="nav-link nav-link-white" href="/">Recettes</a>
+                        <a class="nav-link nav-link-white" href="/recipes">Recettes</a>
                         <?php
                         if (!isset($_SESSION['user'])) {
                         ?>
