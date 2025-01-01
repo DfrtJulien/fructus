@@ -22,6 +22,7 @@ $router->addRoute('/addRecipe', 'RecipeController', 'addRecipe');
 
 // voir toutes les recettes
 $router->addRoute('/recipes', 'RecipeController', 'showAllRecipes');
-
+// voir une recettes
+$router->addRoute('/recipe', 'RecipeController', 'showRecipe');
 
 $router->handleRequest();
