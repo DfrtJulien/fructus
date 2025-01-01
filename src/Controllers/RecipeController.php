@@ -26,30 +26,45 @@ class RecipeController extends AbstractController
           $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
           if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
             $img = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
             $img_path =  $img;
-          }
-
-          $recipe = new Recipe(null, $title, $description, $recipe, $img_path, $dificulty, $time, $created_at, $id_user, null, null);
-          $recipe->addRecipe();
-
-          // je recupere l'id de la recette
-          $recipeCreated = $recipe->getRecipeIdByTitle($title, $description);
-          $recipeId = $recipeCreated->getId();
 
 
-          $ingredientExist = $this->ingredientExist();
-          $this->addIngredient($ingredientExist);
-          $ingredient = $this->ingredients;
+            $recipe = new Recipe(null, $title, $description, $recipe, $img_path, $dificulty, $time, $created_at, $id_user, null, null);
+            $recipe->addRecipe();
 
 
-          foreach ($ingredient as $ingredient => $quantity) {
-            $addIngredient = new Recipe($recipeId, null, null, null, null, null, null, null, null, $ingredient, $quantity);
-            $addIngredient->addIngredient();
+            // je recupere l'id de la recette
+            $recipeCreated = $recipe->getRecipeIdByTitle($title, $description);
+            $recipeId = $recipeCreated->getId();
+
+
+            $ingredientExist = $this->ingredientExist();
+            $this->addIngredient($ingredientExist);
+            $ingredient = $this->ingredients;
+
+
+            foreach ($ingredient as $ingredient => $quantity) {
+              $addIngredient = new Recipe($recipeId, null, null, null, null, null, null, null, null, $ingredient, $quantity);
+              $addIngredient->addIngredient();
+            }
+          } else {
+            $error = "L'image est trop volumineuse.";
           }
         }
         require_once(__DIR__ . '/../Views/recipe/addRecipe.view.php');
       }
     }
+  }
+
+  public function showAllRecipes()
+  {
+
+    $newRecipes = new Recipe(null, null, null, null, null, null, null, null, null, null, null);
+    $allRecipes = $newRecipes->getAllRecipes();
+
+
+    require_once(__DIR__ . "/../Views/recipe/showAllRecipes.view.php");
   }
 }

@@ -20,5 +20,8 @@ $router->addRoute('/logout', 'UsersController', 'logout');
 //ajoutez une recette
 $router->addRoute('/addRecipe', 'RecipeController', 'addRecipe');
 
+// voir toutes les recettes
+$router->addRoute('/recipes', 'RecipeController', 'showAllRecipes');
+
 
 $router->handleRequest();

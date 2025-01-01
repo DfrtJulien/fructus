@@ -18,6 +18,15 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 		<form method="POST" enctype="multipart/form-data" class="addRecipeForm">
 			<label for="fileToUpload">Ajouter votre photo de la recette :</label>
 			<input type="file" name="fileToUpload" id="fileToUpload">
+			<?php
+			if (isset($error)) {
+			?>
+				<div class="alert alert-danger errorContainer" role="alert">
+					<p class='text-danger'><?= $error ?></p>
+				</div>
+			<?php
+			}
+			?>
 			<label for="title" id="title">Titre de la recette</label>
 			<input type="text" name="title">
 			<?php

@@ -37,9 +37,9 @@ class Recipe
   public function addRecipe()
   {
     $pdo =  DataBase::getConnection();
-    $sql = "INSERT INTO `recipes` (id, title, description, instructions, difficulty, time, created_at, id_user) VALUE (?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO `recipes` (id, title, description, instructions, img_path, difficulty, time, created_at, id_user) VALUE (?,?,?,?,?,?,?,?,?)";
     $statement = $pdo->prepare($sql);
-    return $statement->execute([$this->id, $this->title, $this->description, $this->instruction, $this->difficulty, $this->time, $this->created_at, $this->id_user,]);
+    return $statement->execute([$this->id, $this->title, $this->description, $this->instruction, $this->img_path, $this->difficulty, $this->time, $this->created_at, $this->id_user,]);
   }
 
   public function getRecipeIdByTitle($title, $description)
@@ -64,8 +64,66 @@ class Recipe
     return $statement->execute([$this->ingredient_name, $this->ingredient_quantity, $this->id,]);
   }
 
+  public function getAllRecipes()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "SELECT * FROM recipes LIMIT 3, 18446744073709551615";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+    $fetchedRecipes = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $recipes = [];
+    if ($fetchedRecipes) {
+      foreach ($fetchedRecipes as $recipe) {
+        $recipes[] = new Recipe($recipe['id'], $recipe['title'], null, null, $recipe['img_path'], null, null, null, null, null, null);
+      }
+      return $recipes;
+    } else {
+      return null;
+    }
+  }
+
   public function getId(): ?int
   {
     return $this->id;
+  }
+
+  public function getTitle(): ?string
+  {
+    return $this->title;
+  }
+
+  public function getDescription(): ?string
+  {
+    return $this->description;
+  }
+
+  public function getInstruction(): ?string
+  {
+    return $this->instruction;
+  }
+
+  public function getImg(): ?string
+  {
+    return $this->img_path;
+  }
+
+  public function getDifficulty(): ?string
+  {
+    return $this->difficulty;
+  }
+
+  public function getTime(): ?int
+  {
+    return $this->time;
+  }
+
+  public function getCreation_date(): ?string
+  {
+    return $this->created_at;
+  }
+
+  public function getId_user(): ?int
+  {
+    return $this->id_user;
   }
 }
