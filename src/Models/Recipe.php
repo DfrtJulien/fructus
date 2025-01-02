@@ -132,6 +132,15 @@ class Recipe
     return $statement->fetch(PDO::FETCH_ASSOC);
   }
 
+  public function isLikedAllRecipe()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql =  "SELECT * FROM `likes` WHERE id_user = ? AND id_recipe = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id_user, $this->id]);
+    return $statement->fetchALL(PDO::FETCH_ASSOC);
+  }
+
   public function removeFromFavorite()
   {
     $pdo =  DataBase::getConnection();

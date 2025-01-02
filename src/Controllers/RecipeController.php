@@ -65,6 +65,21 @@ class RecipeController extends AbstractController
     $allRecipes = $newRecipes->getAllRecipes();
 
 
+
+    $id_user = htmlspecialchars($_SESSION['user']['id_user']);
+
+    $idLikedRecipes = [];
+
+    foreach ($allRecipes as $recipe) {
+      $id_recipe = $recipe->getId();
+      $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
+      $isLiked = $recipe->isLikedAllRecipe();
+      if ($isLiked) {
+        $idLikedRecipes[] = $id_recipe;
+      }
+    }
+    $count = count($idLikedRecipes);
+
     require_once(__DIR__ . "/../Views/recipe/showAllRecipes.view.php");
   }
 
