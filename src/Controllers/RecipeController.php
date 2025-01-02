@@ -73,11 +73,17 @@ class RecipeController extends AbstractController
     if (isset($_GET['id_recipe'])) {
 
       $id_recipe = htmlspecialchars($_GET['id_recipe']);
-      $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, null, null, null);
+      $id_user = htmlspecialchars($_SESSION['user']['id_user']);
+      $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
+
       $myRecipe = $recipe->getRecipeByid();
       $myIngredient = $recipe->getIngredientByRecipeId();
 
+      if (isset($_POST['id_recipe'], $_SESSION['user']['id_user'])) {
 
+        $id_recipe = htmlspecialchars($_POST['id_recipe']);
+        $recipe->addToFavorite();
+      }
       require_once(__DIR__ . '/../Views/recipe/showRecipe.view.php');
     } else {
       $this->redirectToRoute('/error404');

@@ -115,6 +115,14 @@ class Recipe
     }
   }
 
+  public function addToFavorite()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "INSERT INTO `likes` (id_user, id_recipe) VALUES (?,?)";
+    $statement = $pdo->prepare($sql);
+    return $statement->execute([$this->id_user, $this->id]);
+  }
+
   public function getId(): ?int
   {
     return $this->id;

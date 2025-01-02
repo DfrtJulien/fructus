@@ -21,6 +21,10 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 				</div>
 			</div>
 		</div>
+		<form method="POST" class="addFavoriteForm">
+			<input type="hidden" name="id_recipe" id="id_recipe" value="<?= $myRecipe->getId() ?>">
+			<button type="submit" class="addFavorite">Ajoutez au favoris</button>
+		</form>
 		<div class="myRecimeImgContainer">
 			<img src="/public/img/<?= $myRecipe->getImg() ?>" alt="<?= $myRecipe->getTitle() ?>" class="myRecipeImg">
 		</div>
@@ -56,8 +60,9 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 		</div>
 	</div>
 	<div class="myRecipeInstruction">
-		<p><?= $myRecipe->getInstruction() ?></p>
+		<p class="instruction"><?= $myRecipe->getInstruction() ?></p>
 	</div>
+
 </setction>
 
 <?php
