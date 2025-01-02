@@ -473,6 +473,19 @@ img {
 	align-items: center;
 }
 
+.addFavoriteForm {
+	margin-bottom: 15px;
+}
+
+.addFavorite {
+	border: none;
+	background-color: var(--main-color);
+	color: var(--white-clr);
+	padding: 5px;
+	border-radius: 8px;
+	transition: all 0.5s ease;
+}
+
 .myRecipeFlexContainer {
 	justify-content: space-between;
 }
@@ -535,7 +548,8 @@ img {
 }
 
 #plus:hover,
-#minus:hover {
+#minus:hover,
+.addFavorite:hover {
 	background-color: white;
 	color: var(--main-color);
 }
@@ -543,7 +557,7 @@ img {
 .ingredientContainer {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 .ingredient {
@@ -565,6 +579,10 @@ img {
 .ingredient p {
 	margin-bottom: 0;
 	padding: 5px;
+}
+
+.instruction {
+	font-size: 20px;
 }
 
 /************************************** FOOTER *****************************/
@@ -922,13 +940,20 @@ img {
 		font-size: 25px;
 	}
 
-
 	.myRecipeIcon {
 		font-size: 25px;
 	}
 
+	.ingredientContainer {
+		justify-content: left;
+	}
+
+	.ingredient {
+		margin-right: 25px;
+	}
+
 	.myRecimeImgContainer {
-		height: 400px;
+		height: 590px;
 	}
 
 	.myRecimeImgContainer img {
