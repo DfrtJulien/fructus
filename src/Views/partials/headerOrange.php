@@ -42,7 +42,7 @@
 						} else {
 				?>
 
-					<a class="nav-link nav-link-white" href="/">Mon profil</a>
+					<a class="nav-link nav-link-white" href="/recipeLiked">Mes Favoris</a>
 					<a class="nav-link nav-link-white" href="/logout">Déconnexion</a>
 					<?php
 							if ($_SESSION['user']["id_role"] == 1) {
