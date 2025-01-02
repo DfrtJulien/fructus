@@ -79,14 +79,41 @@ class RecipeController extends AbstractController
       $myRecipe = $recipe->getRecipeByid();
       $myIngredient = $recipe->getIngredientByRecipeId();
 
-      if (isset($_POST['id_recipe'], $_SESSION['user']['id_user'])) {
+      $isLiked = $recipe->isLiked();
+      if ($isLiked) {
+        if (isset($_POST['id_recipe'], $_SESSION['user']['id_user'])) {
 
-        $id_recipe = htmlspecialchars($_POST['id_recipe']);
-        $recipe->addToFavorite();
+          $id_recipe = htmlspecialchars($_POST['id_recipe']);
+          $recipe->removeFromFavorite();
+          header("Refresh:0");
+        }
+      } else {
+        if (isset($_POST['id_recipe'], $_SESSION['user']['id_user'])) {
+
+          $id_recipe = htmlspecialchars($_POST['id_recipe']);
+          $recipe->addToFavorite();
+          header("Refresh:0");
+        }
       }
+
       require_once(__DIR__ . '/../Views/recipe/showRecipe.view.php');
     } else {
       $this->redirectToRoute('/error404');
+    }
+  }
+
+  public function showLikedRecipe()
+  {
+    if (isset($_SESSION['user'])) {
+
+      $id_user = $_SESSION['user']['id_user'];
+
+      $recipe = new Recipe(null, null, null, null, null, null, null, null, $id_user, null, null);
+
+      $favoriteRecipes = $recipe->showFavoriteRecipe();
+
+
+      require_once(__DIR__ . "/../Views/recipe/likedRecipe.view.php");
     }
   }
 }

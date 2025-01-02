@@ -24,5 +24,7 @@ $router->addRoute('/addRecipe', 'RecipeController', 'addRecipe');
 $router->addRoute('/recipes', 'RecipeController', 'showAllRecipes');
 // voir une recettes
 $router->addRoute('/recipe', 'RecipeController', 'showRecipe');
+// voir mes recettes aimer
+$router->addRoute('/recipeLiked', 'RecipeController', 'showLikedRecipe');
 
 $router->handleRequest();

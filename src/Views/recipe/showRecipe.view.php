@@ -23,7 +23,19 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 		</div>
 		<form method="POST" class="addFavoriteForm">
 			<input type="hidden" name="id_recipe" id="id_recipe" value="<?= $myRecipe->getId() ?>">
-			<button type="submit" class="addFavorite">Ajoutez au favoris</button>
+			<?php
+			if (!$isLiked) {
+			?>
+				<button type="submit" class="addFavorite">Ajoutez au favoris</button>
+			<?php
+			} else {
+			?>
+				<button type="submit" class="addFavorite">Retirer des favoris</button>
+			<?php
+			}
+			?>
+
+
 		</form>
 		<div class="myRecimeImgContainer">
 			<img src="/public/img/<?= $myRecipe->getImg() ?>" alt="<?= $myRecipe->getTitle() ?>" class="myRecipeImg">

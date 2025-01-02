@@ -123,6 +123,42 @@ class Recipe
     return $statement->execute([$this->id_user, $this->id]);
   }
 
+  public function isLiked()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql =  "SELECT * FROM `likes` WHERE id_user = ? AND id_recipe = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id_user, $this->id]);
+    return $statement->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function removeFromFavorite()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql =  "DELETE  FROM `likes` WHERE id_user = ? AND id_recipe = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id_user, $this->id]);
+    return $statement->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function showFavoriteRecipe()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "SELECT `recipes`.`id`, `recipes`.`title`, `recipes`.`img_path` FROM `recipes` LEFT JOIN `likes` ON `recipes`.`id` = `likes`.`id_recipe` WHERE `likes`.`id_user` = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id_user]);
+    $fetchedRecipes = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $recipes = [];
+    if ($fetchedRecipes) {
+      foreach ($fetchedRecipes as $recipe) {
+        $recipes[] = new Recipe($recipe['id'], $recipe['title'], null, null, $recipe['img_path'], null, null, null, null, null, null);
+      }
+      return $recipes;
+    } else {
+      return null;
+    }
+  }
+
   public function getId(): ?int
   {
     return $this->id;
