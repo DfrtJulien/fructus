@@ -250,7 +250,8 @@ img {
 	color: var(--white-clr);
 }
 
-.recipeContainer {
+.recipeContainer,
+#comments {
 	background-color: rgba(255, 255, 255, 0.329);
 	padding: 5px 15px;
 	border-radius: 8px;
@@ -420,7 +421,8 @@ img {
 
 .allRecipesContainer,
 .recipeContainer,
-.likedRecipes {
+.likedRecipes,
+#comments {
 	padding-top: 50px;
 	padding-bottom: 50px;
 	width: 93%;
@@ -672,6 +674,52 @@ img {
 .noFavoriteLink {
 	display: block;
 	transition: all 0.5s ease;
+}
+
+.commentFlex {
+	display: flex;
+}
+
+.userInfo {
+	margin-left: 15px;
+}
+
+.userInfo p {
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.UserFirstLetter {
+	font-size: 25px;
+	border-radius: 50%;
+	background-color: var(--main-color);
+	padding: 15px;
+	width: 60px;
+	text-align: center;
+	text-transform: capitalize;
+	color: white;
+}
+
+.comment {
+	margin-top: 20px;
+}
+
+.userComment {
+	padding-left: 10px;
+	font-size: 18px;
+}
+
+.addCommentLink {
+	margin-left: 10px;
+	padding: 5px 10px;
+	border: 1px solid var(--main-color);
+	border-radius: 8px;
+	transition: all 0.5s ease;
+}
+
+.addCommentLink:hover {
+	background-color: var(--main-color);
+	color: white;
 }
 
 /*********************************** COMMENT PAGE ************************/
@@ -991,8 +1039,9 @@ img {
 		color: var(--white-clr);
 	}
 
-	.recipeContainer {
-		padding: 50px 95px;
+	.recipeContainer,
+	#comments {
+		padding: 20px 95px;
 	}
 
 	/********************************************************* INSCRIPTION ******************************************/
