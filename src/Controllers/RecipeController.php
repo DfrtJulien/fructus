@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Utils\AbstractController;
 use App\Models\Recipe;
+use App\Models\Comment;
 
 class RecipeController extends AbstractController
 {
@@ -129,6 +130,39 @@ class RecipeController extends AbstractController
 
 
       require_once(__DIR__ . "/../Views/recipe/likedRecipe.view.php");
+    }
+  }
+
+  public function addComment()
+  {
+    if (isset($_SESSION['user'])) {
+      if (isset($_GET['id_recipe'])) {
+
+        $id_recipe = htmlspecialchars($_GET['id_recipe']);
+        $id_user = htmlspecialchars($_SESSION['user']['id_user']);
+        $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
+        $myRecipe = $recipe->getRecipeByid();
+
+        if (isset($_POST['note'], $_POST['comment'])) {
+          $this->check("note", $_POST['note']);
+          $this->check("comment", $_POST['comment']);
+
+          if (empty($this->arrayError)) {
+            $rating = htmlspecialchars($_POST['note']);
+            $comment = htmlspecialchars($_POST['comment']);
+            $date =  Date('Y-m-d');
+
+            $comment = new Comment(null, $comment, $rating, $date, null, $id_user, $id_recipe);
+
+            $comment->addNoteAndcomment();
+          }
+        }
+        require_once(__DIR__ . "/../Views/recipe/addComment.view.php");
+      } else {
+        $this->redirectToRoute('/404');
+      }
+    } else {
+      $this->redirectToRoute('/login');
     }
   }
 }

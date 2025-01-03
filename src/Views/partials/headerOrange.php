@@ -17,7 +17,7 @@
 	<nav class="navbar navbar-expand-lg myNavOrange">
 		<div class="container-fluid">
 			<div>
-				<i class="fa-solid fa-bars burger"></i>
+				<i class="fa-solid fa-bars burger" id="open-menu"></i>
 				<a class="navbar-brand title" href="/"> Fructus</a>
 			</div>
 			<div class="searchContainer">
@@ -61,3 +61,24 @@
 			</div>
 		</div>
 	</nav>
+	<div class="menu-container hidden" id="menu">
+		<div class="menu">
+			<div>
+				<h3>Catégory</h3>
+				<ul>
+					<li><a href="">Gateaux</a></li>
+					<li><a href="">Crêpes</a></li>
+					<li><a href="">Pancacke</a></li>
+				</ul>
+			</div>
+			<div>
+				<h3>Goût</h3>
+				<ul>
+					<li><a href="">Chocolat</a></li>
+					<li><a href="">Fraise</a></li>
+					<li><a href="">Multifruit</a></li>
+				</ul>
+			</div>
+			<i class="fa-solid fa-x close-menu" id="close-menu"></i>
+		</div>
+	</div>

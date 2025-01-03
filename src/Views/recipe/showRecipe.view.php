@@ -34,7 +34,7 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 			<?php
 			}
 			?>
-
+			<a href="/addComment?id_recipe=<?= $myRecipe->getId() ?>">Ajoutez un commentaire</a>
 
 		</form>
 		<div class="myRecimeImgContainer">
