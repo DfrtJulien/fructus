@@ -33,4 +33,59 @@ class Comment extends Recipe
     $statement = $pdo->prepare($sql);
     return $statement->execute([$this->id, $this->content, $this->rating, $this->created_at, $this->id_user, $this->id_recipe]);
   }
+
+  public function getNumberComment()
+  {
+    $pdo = DataBase::getConnection();
+    $sql = "SELECT COUNT(content) FROM `rating_comment` WHERE id_recipe = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id_recipe]);
+    return $resultFetch = $statement->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function sumArticleNote()
+  {
+    $pdo = DataBase::getConnection();
+    $sql = "SELECT SUM(rating)
+                FROM `rating_comment`
+                WHERE `id_recipe` = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id_recipe]);
+    return $resultFetch = $statement->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
+
+  public function getContent(): ?string
+  {
+    return $this->content;
+  }
+
+  public function getRating(): ?int
+  {
+    return $this->rating;
+  }
+
+  public function getCreation_date(): ?string
+  {
+    return $this->created_at;
+  }
+
+  public function getId_user(): ?int
+  {
+    return $this->id_user;
+  }
+
+  public function getId_recipe(): ?int
+  {
+    return $this->id_recipe;
+  }
+
+  public function getUpdated_date(): ?string
+  {
+    return $this->updated_at;
+  }
 }

@@ -478,12 +478,25 @@ img {
 
 .myRecipeNumberComment {
 	opacity: 0.7;
+	margin-bottom: 0;
+	font-size: 20px;
+	margin-left: 10px;
 }
 
 .myRecipeFlex,
 .myRecipeFlexContainer {
 	display: flex;
 	align-items: center;
+}
+
+.ratingContainer {
+	display: flex;
+	align-items: center;
+}
+
+.ratingIcon {
+	font-size: 20px;
+	color: var(--main-color);
 }
 
 .addFavoriteForm {
@@ -1072,6 +1085,21 @@ img {
 		width: 450px;
 		height: 300px;
 		max-width: none;
+	}
+
+
+	/************************************** RATING  ************************/
+
+	.addNoteAndRating h3 {
+		font-size: 35px;
+	}
+
+	.addNoteAndRating select {
+		width: 5%;
+	}
+
+	.addComentBtn {
+		width: 250px;
 	}
 
 	/************************************** FOOTER *****************************/
