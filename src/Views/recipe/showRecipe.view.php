@@ -5,9 +5,20 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 	<div class="myRecipeInfo">
 		<h3 class="myRecipeTitle"><?= $myRecipe->getTitle() ?></h3>
 		<p class="myRecipeDescription"><?= $myRecipe->getDescription() ?></p>
-		<div class="d-flex">
-			<p>note</p>
-			<p class="myRecipeNumberComment">avis</p>
+		<div class="ratingContainer">
+			<?php
+			if ($numberComments) {
+			?>
+				<i class="<?= $sumNoteInt == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $sumNoteInt < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $sumNoteInt < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $sumNoteInt < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $sumNoteInt < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<p class="myRecipeNumberComment"><?= $numberComments ?> Avis</p>
+			<?php
+			}
+			?>
+
 		</div>
 		<div class="timeAndDificulty">
 			<div class="myRecipeFlexContainer">
