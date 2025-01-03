@@ -23,6 +23,10 @@ h6 {
 	font-style: normal;
 }
 
+textarea {
+	max-height: 350px;
+}
+
 p,
 a,
 label,
@@ -282,7 +286,8 @@ img {
 }
 
 .form label,
-.addRecipeForm label {
+.addRecipeForm label,
+.addNoteAndRating label {
 	width: 100%;
 	padding: 5px 15px;
 	font-size: 18px;
@@ -292,7 +297,9 @@ img {
 .form input,
 .addRecipeForm input,
 .addRecipeForm textarea,
-.addRecipeForm select {
+.addRecipeForm select,
+.addNoteAndRating select,
+.addNoteAndRating textarea {
 	width: 95%;
 	margin: 0 10px 20px 10px;
 	border: none;
@@ -301,7 +308,8 @@ img {
 }
 
 .form input:focus,
-.addRecipeForm input:focus {
+.addRecipeForm input:focus,
+.addNoteAndRating input {
 	outline: none;
 	border-bottom: 1px solid var(--main-color);
 }
@@ -317,7 +325,8 @@ img {
 	padding: 5px;
 }
 
-.registerBtn {
+.registerBtn,
+.addComentBtn {
 	border: none;
 	width: 100%;
 	background-color: var(--main-color);
@@ -328,7 +337,8 @@ img {
 	transition: all 0.3s ease;
 }
 
-.registerBtn:hover {
+.registerBtn:hover,
+.addComentBtn:hover {
 	border: 2px solid var(--main-color);
 	color: var(--main-color);
 	background-color: var(--white-clr);
@@ -369,7 +379,8 @@ img {
 	font-size: 18px;
 }
 
-.addRecipeForm select {
+.addRecipeForm select,
+.addNoteAndRating select {
 	padding: 10px;
 	background-color: var(--main-color);
 	color: white;
@@ -642,6 +653,18 @@ img {
 .noFavoriteLink {
 	display: block;
 	transition: all 0.5s ease;
+}
+
+/*********************************** COMMENT PAGE ************************/
+
+.addNoteAndRating h3 {
+	font-size: 22px;
+	margin-bottom: 15px;
+}
+
+.addNoteAndRating label {
+	width: 100%;
+	margin-bottom: 10px;
 }
 
 /************************************** FOOTER *****************************/

@@ -27,4 +27,6 @@ $router->addRoute('/recipe', 'RecipeController', 'showRecipe');
 // voir mes recettes aimer
 $router->addRoute('/recipeLiked', 'RecipeController', 'showLikedRecipe');
 
+// ajoutez une note et un commentaire a une recette
+$router->addRoute('/addComment', 'RecipeController', 'addComment');
 $router->handleRequest();

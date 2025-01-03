@@ -70,7 +70,8 @@ abstract class AbstractController
   {
     $regexName = '/^[a-zA-Zà-üÀ-Ü -]{2,255}$/';
     $regexPassword = '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/';
-
+    $regexNote = '/^(5(?:[.,]0{1,2})?|[0-4](?:[.,]\d{1,2})?)$/';
+    $regexDescription = '/^(.|\s)*[a-zA-Z]+(.|\s)*$/';
     switch ($nameInput) {
       case 'name':
         if (!preg_match($regexName, $value)) {
@@ -85,6 +86,16 @@ abstract class AbstractController
       case 'password':
         if (!preg_match($regexPassword, $value)) {
           $this->arrayError['password'] = 'Merci de donné un mot de passe avec au minimum : 8 caractères, 1 majuscule, 1 miniscule, 1 caractère spécial!';
+        }
+        break;
+      case 'note':
+        if (!preg_match($regexNote, $value)) {
+          $this->arrayError['note'] = 'Merci de donné une note correcte';
+        }
+        break;
+      case 'comment':
+        if (!preg_match($regexDescription, $value)) {
+          $this->arrayError['comment'] = 'Merci de donné un commentaire correcte';
         }
         break;
     }
