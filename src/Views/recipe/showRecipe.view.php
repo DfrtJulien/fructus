@@ -45,7 +45,7 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 			<?php
 			}
 			?>
-			<a href="/addComment?id_recipe=<?= $myRecipe->getId() ?>">Ajoutez un commentaire</a>
+			<a href="/addComment?id_recipe=<?= $myRecipe->getId() ?>" class="addCommentLink">Ajoutez un commentaire</a>
 
 		</form>
 		<div class="myRecimeImgContainer">
@@ -68,6 +68,8 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 
 
 				foreach ($myIngredient as $ingredient) {
+					$sumNote = $newComment->sumArticleNote();
+					$sumNoteInt = intval(reset($sumNote));
 			?>
 					<div class="ingredient">
 						<div class="ingredientImg">
@@ -87,9 +89,41 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 	</div>
 
 </setction>
-<section id="comments">
-	<h2>Commentaires</h2>
-</section>
+<?php
+if ($comments) {
+?>
+	<section id="comments">
+		<h2>Donner votre avis</h2>
+		<div class="commentsContainer">
+			<?php
+			foreach ($comments as $comment) {
+				$username =  $comment->getUsername();
+				$firstletter = mb_substr($username, 0, 1);
+			?>
+				<div class="comment">
+					<div class="commentFlex">
+						<p class="UserFirstLetter"><?= $firstletter ?></p>
+						<div class="userInfo">
+							<p><?= $comment->getUsername() ?></p>
+							<i class="<?= $sumNoteInt == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $sumNoteInt < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $sumNoteInt < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $sumNoteInt < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $sumNoteInt < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+						</div>
+					</div>
+					<p class="userComment"><?= $comment->getContent() ?></p>
+				</div>
+			<?php
+			}
+			?>
+		</div>
+		<a href="/addComment?id_recipe=<?= $myRecipe->getId() ?>" class="addCommentLink">Ajoutez un commentaire</a>
+	</section>
+<?php
+}
+?>
+
 <?php
 
 require_once(__DIR__ . "/../partials/footer.php");

@@ -14,7 +14,7 @@ use App\Models\Comment;
       <?php
       foreach ($favoriteRecipes as $recipe) {
         $id_recipe = $recipe->getId();
-        $newComment = new Comment(null, null, null, null, null, null, $id_recipe);
+        $newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);
         $comment = $newComment->getNumberComment();
 
         $numberComments = $comment["COUNT(content)"];

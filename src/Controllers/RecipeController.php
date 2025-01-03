@@ -92,7 +92,7 @@ class RecipeController extends AbstractController
       $id_user = htmlspecialchars($_SESSION['user']['id_user']);
       $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
 
-      $newComment = new Comment(null, null, null, null, null, null, $id_recipe);
+      $newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);
       $comment = $newComment->getNumberComment();
 
       $numberComments = $comment["COUNT(content)"];
@@ -118,6 +118,9 @@ class RecipeController extends AbstractController
           header("Refresh:0");
         }
       }
+
+      $comments = $newComment->getAllCommentsByRecipeId();
+
 
       require_once(__DIR__ . '/../Views/recipe/showRecipe.view.php');
     } else {
@@ -150,7 +153,7 @@ class RecipeController extends AbstractController
         $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
         $myRecipe = $recipe->getRecipeByid();
 
-        $newComment = new Comment(null, null, null, null, null, null, $id_recipe);
+        $newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);
         $comment = $newComment->getNumberComment();
 
         $numberComments = $comment["COUNT(content)"];
@@ -165,7 +168,7 @@ class RecipeController extends AbstractController
             $comment = htmlspecialchars($_POST['comment']);
             $date =  Date('Y-m-d');
 
-            $comment = new Comment(null, $comment, $rating, $date, null, $id_user, $id_recipe);
+            $comment = new Comment(null, $comment, $rating, $date, null, $id_user, $id_recipe, null, null);
 
             $comment->addNoteAndcomment();
           }
