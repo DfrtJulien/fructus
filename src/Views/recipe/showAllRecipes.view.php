@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . "/../partials/head.php");
 
+use App\Models\Comment;
 ?>
 
 
@@ -14,6 +15,12 @@ require_once(__DIR__ . "/../partials/head.php");
 			<?php
 			foreach ($allRecipes as $recipe) {
 				$id_recipe = $recipe->getId();
+				$newComment = new Comment(null, null, null, null, null, null, $id_recipe);
+				$comment = $newComment->getNumberComment();
+
+				$numberComments = $comment["COUNT(content)"];
+				$sumNote = $newComment->sumArticleNote();
+				$sumNoteInt = intval(reset($sumNote));
 			?>
 				<a href="/recipe?id_recipe=<?= $recipe->getId() ?>">
 					<div class="allRecipe">
@@ -31,8 +38,21 @@ require_once(__DIR__ . "/../partials/head.php");
 							<i class="fa-regular fa-heart likeIcon"></i>
 						<?php
 						}
-
 						?>
+						<div class="ratingContainer">
+							<?php
+							if ($numberComments) {
+							?>
+								<i class="<?= $sumNoteInt == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+								<i class="<?= $sumNoteInt < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+								<i class="<?= $sumNoteInt < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+								<i class="<?= $sumNoteInt < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+								<i class="<?= $sumNoteInt < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+								<a href="/recipe?id_recipe=<?= $recipe->getId() ?>#comments" class="myRecipeNumberComment"><?= $numberComments ?> Avis</a>
+							<?php
+							}
+							?>
+						</div>
 					</div>
 				</a>
 			<?php

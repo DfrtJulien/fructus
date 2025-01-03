@@ -87,7 +87,9 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 	</div>
 
 </setction>
-
+<section id="comments">
+	<h2>Commentaires</h2>
+</section>
 <?php
 
 require_once(__DIR__ . "/../partials/footer.php");

@@ -91,11 +91,14 @@ class RecipeController extends AbstractController
       $id_recipe = htmlspecialchars($_GET['id_recipe']);
       $id_user = htmlspecialchars($_SESSION['user']['id_user']);
       $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
+
       $newComment = new Comment(null, null, null, null, null, null, $id_recipe);
       $comment = $newComment->getNumberComment();
+
       $numberComments = $comment["COUNT(content)"];
       $sumNote = $newComment->sumArticleNote();
       $sumNoteInt = intval(reset($sumNote));
+
       $myRecipe = $recipe->getRecipeByid();
       $myIngredient = $recipe->getIngredientByRecipeId();
 
@@ -147,6 +150,12 @@ class RecipeController extends AbstractController
         $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
         $myRecipe = $recipe->getRecipeByid();
 
+        $newComment = new Comment(null, null, null, null, null, null, $id_recipe);
+        $comment = $newComment->getNumberComment();
+
+        $numberComments = $comment["COUNT(content)"];
+        $sumNote = $newComment->sumArticleNote();
+        $sumNoteInt = intval(reset($sumNote));
         if (isset($_POST['note'], $_POST['comment'])) {
           $this->check("note", $_POST['note']);
           $this->check("comment", $_POST['comment']);
