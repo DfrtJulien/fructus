@@ -489,7 +489,8 @@ img {
 	align-items: center;
 }
 
-.ratingContainer {
+.ratingContainer,
+.ratingContainerFavorite {
 	display: flex;
 	align-items: center;
 }
@@ -637,12 +638,13 @@ img {
 }
 
 .likedRecipeInfo {
-	background-color: #11111144;
+	background-color: #11111127;
 	padding: 5px;
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
+	height: 86px;
 }
 
 .likedRecipeInfo h2 {
@@ -652,6 +654,10 @@ img {
 
 .likedRecipeNote {
 	display: flex;
+	justify-content: center;
+}
+
+.ratingContainerFavorite {
 	justify-content: center;
 }
 
@@ -1059,7 +1065,7 @@ img {
 	}
 
 	.myRecimeImgContainer {
-		height: 590px;
+		height: 400px;
 	}
 
 	.myRecimeImgContainer img {

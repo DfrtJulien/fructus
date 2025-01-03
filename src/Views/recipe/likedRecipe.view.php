@@ -1,6 +1,8 @@
 <?php
 
 require_once(__DIR__ . "/../partials/headerOrange.php");
+
+use App\Models\Comment;
 ?>
 <section class="likedRecipes">
 
@@ -11,6 +13,13 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
     <div class="likedRecipesContainer">
       <?php
       foreach ($favoriteRecipes as $recipe) {
+        $id_recipe = $recipe->getId();
+        $newComment = new Comment(null, null, null, null, null, null, $id_recipe);
+        $comment = $newComment->getNumberComment();
+
+        $numberComments = $comment["COUNT(content)"];
+        $sumNote = $newComment->sumArticleNote();
+        $sumNoteInt = intval(reset($sumNote));
       ?>
         <a href="/recipe?id_recipe=<?= $recipe->getId() ?>">
           <div class="likedRecipe">
@@ -19,9 +28,19 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
             </div>
             <div class="likedRecipeInfo">
               <h2><?= $recipe->getTitle() ?></h2>
-              <div class="likedRecipeNote">
-                <p>note</p>
-                <p>avis</p>
+              <div class="ratingContainerFavorite">
+                <?php
+                if ($numberComments) {
+                ?>
+                  <i class="<?= $sumNoteInt == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+                  <i class="<?= $sumNoteInt < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+                  <i class="<?= $sumNoteInt < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+                  <i class="<?= $sumNoteInt < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+                  <i class="<?= $sumNoteInt < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+                  <a href="/recipe?id_recipe=<?= $recipe->getId() ?>#comments" class="myRecipeNumberComment"><?= $numberComments ?> Avis</a>
+                <?php
+                }
+                ?>
               </div>
             </div>
             <i class="fa-solid fa-heart likeIcon"></i>
