@@ -239,24 +239,27 @@ img {
 	display: flex;
 	flex-wrap: wrap;
 	width: 200px;
-	margin: auto;
 }
 
 .filterLogo {
 	width: 20px;
 }
 
-.recipeContainer h6 {
+.homeRecipeContainer h6 {
 	color: var(--white-clr);
 }
 
-.recipeContainer,
+.homeRecipeContainer,
 #comments {
 	background-color: rgba(255, 255, 255, 0.329);
 	padding: 5px 15px;
 	border-radius: 8px;
 	margin-left: 15px;
 	margin-top: 15px;
+}
+
+.homeRecipeContainer {
+	text-align: center;
 }
 
 /********************************************************* INSCRIPTION ******************************************/
@@ -819,7 +822,8 @@ img {
 		margin-bottom: 10px;
 	}
 
-	.recipeContainer {
+	.recipeContainer,
+	.homeRecipeContainer {
 		background-color: rgba(255, 255, 255, 0.329);
 		padding: 20px 55px;
 	}
@@ -1039,7 +1043,7 @@ img {
 		color: var(--white-clr);
 	}
 
-	.recipeContainer,
+	.homeRecipeContainer,
 	#comments {
 		padding: 20px 95px;
 	}

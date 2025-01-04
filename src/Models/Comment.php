@@ -77,6 +77,20 @@ class Comment extends Recipe
     }
   }
 
+  public function getNoteByUserId()
+  {
+    $pdo = DataBase::getConnection();
+    $sql = "SELECT `id`, `rating` FROM `rating_comment` WHERE `id_recipe` = ? AND `id_user` = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id_recipe, $this->id_user]);
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+      return new Comment($row['id'], null, $row['rating'], null, null, null, null, null, null);
+    } else {
+      return null;
+    }
+  }
+
   public function getId(): ?int
   {
     return $this->id;

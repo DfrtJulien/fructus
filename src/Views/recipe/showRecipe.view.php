@@ -1,5 +1,7 @@
 <?php
 require_once(__DIR__ . "/../partials/headerOrange.php");
+
+use App\Models\Comment;
 ?>
 <setction class="recipeContainer">
 	<div class="myRecipeInfo">
@@ -7,13 +9,13 @@ require_once(__DIR__ . "/../partials/headerOrange.php");
 		<p class="myRecipeDescription"><?= $myRecipe->getDescription() ?></p>
 		<div class="ratingContainer">
 			<?php
-			if ($numberComments) {
+			if ($recipeNote) {
 			?>
-				<i class="<?= $sumNoteInt == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<i class="<?= $sumNoteInt < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<i class="<?= $sumNoteInt < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<i class="<?= $sumNoteInt < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<i class="<?= $sumNoteInt < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $recipeNote == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $recipeNote < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $recipeNote < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $recipeNote < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+				<i class="<?= $recipeNote < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
 				<p class="myRecipeNumberComment"><?= $numberComments ?> Avis</p>
 			<?php
 			}
@@ -97,6 +99,10 @@ if ($comments) {
 		<div class="commentsContainer">
 			<?php
 			foreach ($comments as $comment) {
+				$id_user = $comment->getId_user();
+				$fetchNote = new Comment(null, null, null, null, null, $id_user, $id_recipe, null, null);
+				$notes = $fetchNote->getNoteByUserId();
+				$userNote = $notes->getRating();
 				$username =  $comment->getUsername();
 				$firstletter = mb_substr($username, 0, 1);
 			?>
@@ -105,11 +111,11 @@ if ($comments) {
 						<p class="UserFirstLetter"><?= $firstletter ?></p>
 						<div class="userInfo">
 							<p><?= $comment->getUsername() ?></p>
-							<i class="<?= $sumNoteInt == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-							<i class="<?= $sumNoteInt < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-							<i class="<?= $sumNoteInt < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-							<i class="<?= $sumNoteInt < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-							<i class="<?= $sumNoteInt < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $userNote == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $userNote < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $userNote < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $userNote < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $userNote < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
 						</div>
 					</div>
 					<p class="userComment"><?= $comment->getContent() ?></p>
