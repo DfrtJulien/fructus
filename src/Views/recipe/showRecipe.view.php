@@ -72,6 +72,7 @@ use App\Models\Comment;
 				foreach ($myIngredient as $ingredient) {
 					$sumNote = $newComment->sumArticleNote();
 					$sumNoteInt = intval(reset($sumNote));
+
 			?>
 					<div class="ingredient">
 						<div class="ingredientImg">
@@ -83,11 +84,28 @@ use App\Models\Comment;
 			<?php
 				}
 			}
+			$allInstruction = $myRecipe->getInstruction();
+
+			// Utiliser une expression régulière pour couper à chaque chiffre suivi d'un point
+			$steps = preg_split('/(?=\d+\.)/', $allInstruction);
+
+			// Supprimer le premier élément vide si présent
+			if (empty($steps[0])) {
+				array_shift($steps);
+			}
+
 			?>
 		</div>
 	</div>
 	<div class="myRecipeInstruction">
-		<p class="instruction"><?= $myRecipe->getInstruction() ?></p>
+		<?php
+		foreach ($steps as $instructions) {
+		?>
+			<p class="instruction"><?= $instructions ?></p>
+		<?php
+		}
+		?>
+
 	</div>
 
 </setction>
