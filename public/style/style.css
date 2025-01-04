@@ -398,20 +398,33 @@ img {
 
 .imgIngredientContainer {
 	display: flex;
-	justify-content: space-around;
 	flex-wrap: wrap;
+	row-gap: 10px;
+	column-gap: 25px;
 	padding: 5px;
 }
 
 .imgRecipe {
 	width: 150px;
 	margin-top: 10px;
+	/* margin-right: 20px; */
 }
 
 #imgIngredient {
 	width: 100%;
 	height: 70px;
 	border-radius: 8px;
+}
+
+.categoryForm h3 {
+	margin-top: 15px;
+	font-size: 22px;
+}
+
+.categoryForm label,
+.categoryForm input {
+	width: fit-content;
+	margin: 0;
 }
 
 /******************************************************************** SHOW ALL RECPIES ***************************************/
@@ -425,6 +438,7 @@ img {
 .allRecipesContainer,
 .recipeContainer,
 .likedRecipes,
+.recentRecipes,
 #comments {
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -433,7 +447,8 @@ img {
 	display: block;
 }
 
-.allRecipesContainer h3 {
+.allRecipesContainer h3,
+.recentRecipes h3 {
 	font-size: 35px;
 }
 
@@ -643,7 +658,7 @@ img {
 }
 
 .likedRecipeInfo {
-	background-color: #11111127;
+	background-color: #111111b6;
 	padding: 5px;
 	position: absolute;
 	bottom: 0;
@@ -664,6 +679,10 @@ img {
 
 .ratingContainerFavorite {
 	justify-content: center;
+}
+
+.LikedRecipeComment {
+	color: white;
 }
 
 .noFavortieImg {
@@ -832,7 +851,8 @@ img {
 
 	.flexRecipeContainer {
 		flex-direction: row;
-		justify-content: space-between;
+		row-gap: 20px;
+		column-gap: 50px;
 	}
 
 	.imgRecipeContainer {
@@ -1045,7 +1065,7 @@ img {
 
 	.homeRecipeContainer,
 	#comments {
-		padding: 20px 95px;
+		padding: 20px 55px;
 	}
 
 	/********************************************************* INSCRIPTION ******************************************/
@@ -1066,6 +1086,14 @@ img {
 
 	/************************************************************** ALL RECIPES  ****************************************/
 
+	.allRecipesContainer,
+	.recipeContainer,
+	.likedRecipes,
+	.recentRecipes,
+	#comments {
+		width: 75%;
+	}
+
 	.img-container-headerRecipe {
 		height: 500px;
 	}
@@ -1085,12 +1113,20 @@ img {
 
 	/****************************************************** RECIPE PAGE *********************************/
 
+	.myRecipeInfo {
+		display: flex;
+		margin-top: 40px;
+	}
+
 	.myRecipeTitle {
 		font-size: 65px;
+		margin-bottom: 20px;
 	}
 
 	.myRecipeDescription {
 		font-size: 25px;
+		padding-right: 25px;
+		max-width: 750px;
 	}
 
 	.myRecipeFlexContainer {
@@ -1119,6 +1155,16 @@ img {
 
 	.myRecimeImgContainer {
 		height: 400px;
+		width: 500px;
+		image-rendering: crisp-edges;
+		image-rendering: -moz-crisp-edges;
+		/* Firefox */
+		image-rendering: -o-crisp-edges;
+		/* Opera */
+		image-rendering: -webkit-optimize-contrast;
+		/* Webkit (non-standard naming)*/
+		-ms-interpolation-mode: nearest-neighbor;
+		margin: auto;
 	}
 
 	.myRecimeImgContainer img {

@@ -5,51 +5,54 @@ use App\Models\Comment;
 ?>
 <setction class="recipeContainer">
 	<div class="myRecipeInfo">
-		<h3 class="myRecipeTitle"><?= $myRecipe->getTitle() ?></h3>
-		<p class="myRecipeDescription"><?= $myRecipe->getDescription() ?></p>
-		<div class="ratingContainer">
-			<?php
-			if ($recipeNote) {
-			?>
-				<i class="<?= $recipeNote == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<i class="<?= $recipeNote < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<i class="<?= $recipeNote < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<i class="<?= $recipeNote < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<i class="<?= $recipeNote < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-				<p class="myRecipeNumberComment"><?= $numberComments ?> Avis</p>
-			<?php
-			}
-			?>
+		<div>
+			<h3 class="myRecipeTitle"><?= $myRecipe->getTitle() ?></h3>
+			<p class="myRecipeDescription"><?= $myRecipe->getDescription() ?></p>
+			<div class="ratingContainer">
+				<?php
+				if ($recipeNote) {
+				?>
+					<i class="<?= $recipeNote == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+					<i class="<?= $recipeNote < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+					<i class="<?= $recipeNote < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+					<i class="<?= $recipeNote < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+					<i class="<?= $recipeNote < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+					<p class="myRecipeNumberComment"><?= $numberComments ?> Avis</p>
+				<?php
+				}
+				?>
 
-		</div>
-		<div class="timeAndDificulty">
-			<div class="myRecipeFlexContainer">
-				<div class="myRecipeFlex">
-					<i class="fa-regular fa-clock myRecipeIcon"></i>
-					<p><?= $myRecipe->getTime() ?> min</p>
-				</div>
-				<div class="myRecipeFlex">
-					<i class="fa-solid fa-users myRecipeIcon"></i>
-					<p><?= $myRecipe->getDifficulty() ?></p>
+			</div>
+			<div class="timeAndDificulty">
+				<div class="myRecipeFlexContainer">
+					<div class="myRecipeFlex">
+						<i class="fa-regular fa-clock myRecipeIcon"></i>
+						<p><?= $myRecipe->getTime() ?> min</p>
+					</div>
+					<div class="myRecipeFlex">
+						<i class="fa-solid fa-users myRecipeIcon"></i>
+						<p><?= $myRecipe->getDifficulty() ?></p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<form method="POST" class="addFavoriteForm">
-			<input type="hidden" name="id_recipe" id="id_recipe" value="<?= $myRecipe->getId() ?>">
-			<?php
-			if (!$isLiked) {
-			?>
-				<button type="submit" class="addFavorite">Ajoutez au favoris</button>
-			<?php
-			} else {
-			?>
-				<button type="submit" class="addFavorite">Retirer des favoris</button>
-			<?php
-			}
-			?>
-			<a href="/addComment?id_recipe=<?= $myRecipe->getId() ?>" class="addCommentLink">Ajoutez un commentaire</a>
+			<form method="POST" class="addFavoriteForm">
+				<input type="hidden" name="id_recipe" id="id_recipe" value="<?= $myRecipe->getId() ?>">
+				<?php
+				if (!$isLiked) {
+				?>
+					<button type="submit" class="addFavorite">Ajoutez au favoris</button>
+				<?php
+				} else {
+				?>
+					<button type="submit" class="addFavorite">Retirer des favoris</button>
+				<?php
+				}
+				?>
+				<a href="/addComment?id_recipe=<?= $myRecipe->getId() ?>" class="addCommentLink">Ajoutez un commentaire</a>
 
-		</form>
+			</form>
+		</div>
+
 		<div class="myRecimeImgContainer">
 			<img src="/public/img/<?= $myRecipe->getImg() ?>" alt="<?= $myRecipe->getTitle() ?>" class="myRecipeImg">
 		</div>

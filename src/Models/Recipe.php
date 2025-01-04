@@ -17,9 +17,10 @@ class Recipe
   protected ?string $created_at;
   protected ?int $id_user;
   protected ?string $ingredient_name;
-  protected ?int $ingredient_quantity;
+  protected int|string|null $ingredient_quantity;
+  protected ?string $category;
 
-  public function __construct(?int $id, ?string $title, ?string $description,  ?string $instruction, ?string $img_path, ?string $difficulty, ?int $time,  ?string $created_at, ?int $id_user, ?string $ingredient_name, ?int $ingredient_quantity)
+  public function __construct(?int $id, ?string $title, ?string $description,  ?string $instruction, ?string $img_path, ?string $difficulty, ?int $time,  ?string $created_at, ?int $id_user, ?string $ingredient_name, int|string|null $ingredient_quantity, ?string $category)
   {
     $this->id = $id;
     $this->title = $title;
@@ -32,6 +33,7 @@ class Recipe
     $this->id_user = $id_user;
     $this->ingredient_name = $ingredient_name;
     $this->ingredient_quantity = $ingredient_quantity;
+    $this->category = $category;
   }
 
   public function addRecipe()
@@ -50,7 +52,7 @@ class Recipe
     $statement->execute([$title, $description]);
     $recipe = $statement->fetch(PDO::FETCH_ASSOC);
     if ($recipe) {
-      return new Recipe($recipe['id'], null, null, null, null, null, null, null, null, null, null);
+      return new Recipe($recipe['id'], null, null, null, null, null, null, null, null, null, null, null);
     } else {
       return null;
     }
@@ -64,17 +66,43 @@ class Recipe
     return $statement->execute([$this->ingredient_name, $this->ingredient_quantity, $this->id,]);
   }
 
+  public function addCategory()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "INSERT INTO `category` (category, id_recipe) VALUE (?,?)";
+    $statement = $pdo->prepare($sql);
+    return $statement->execute([$this->category, $this->id]);
+  }
+
   public function getAllRecipes()
   {
     $pdo =  DataBase::getConnection();
-    $sql = "SELECT * FROM recipes LIMIT 3, 18446744073709551615";
+    $sql = "SELECT * FROM recipes WHERE created_at < (SELECT created_at FROM recipes ORDER BY created_at DESC LIMIT 1 OFFSET 2);";
     $statement = $pdo->prepare($sql);
     $statement->execute();
     $fetchedRecipes = $statement->fetchAll(PDO::FETCH_ASSOC);
     $recipes = [];
     if ($fetchedRecipes) {
       foreach ($fetchedRecipes as $recipe) {
-        $recipes[] = new Recipe($recipe['id'], $recipe['title'], null, null, $recipe['img_path'], null, null, null, null, null, null);
+        $recipes[] = new Recipe($recipe['id'], $recipe['title'], null, null, $recipe['img_path'], null, null, null, null, null, null, null);
+      }
+      return $recipes;
+    } else {
+      return null;
+    }
+  }
+
+  public function getThreeMostRecentRecipe()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "SELECT * FROM recipes ORDER BY created_at DESC LIMIT 3";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+    $fetchedRecipes = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $recipes = [];
+    if ($fetchedRecipes) {
+      foreach ($fetchedRecipes as $recipe) {
+        $recipes[] = new Recipe($recipe['id'], $recipe['title'], null, null, $recipe['img_path'], null, null, null, null, null, null, null);
       }
       return $recipes;
     } else {
@@ -91,7 +119,7 @@ class Recipe
     $recipe = $statement->fetch(PDO::FETCH_ASSOC);
 
     if ($recipe) {
-      return new Recipe($recipe['id'], $recipe['title'], $recipe['description'], $recipe['instructions'], $recipe['img_path'], $recipe['difficulty'], $recipe['time'], null, null, null, null);
+      return new Recipe($recipe['id'], $recipe['title'], $recipe['description'], $recipe['instructions'], $recipe['img_path'], $recipe['difficulty'], $recipe['time'], null, null, null, null, null);
     } else {
       return null;
     }
@@ -107,7 +135,7 @@ class Recipe
     $ingredients = [];
     if ($fetchedIngredient) {
       foreach ($fetchedIngredient as $ingredient) {
-        $ingredients[] = new Recipe(null, null, null, null, null, null, null, null, null, $ingredient['name'], $ingredient['quantity']);
+        $ingredients[] = new Recipe(null, null, null, null, null, null, null, null, null, $ingredient['name'], $ingredient['quantity'], null);
       }
       return $ingredients;
     } else {
@@ -160,7 +188,7 @@ class Recipe
     $recipes = [];
     if ($fetchedRecipes) {
       foreach ($fetchedRecipes as $recipe) {
-        $recipes[] = new Recipe($recipe['id'], $recipe['title'], null, null, $recipe['img_path'], null, null, null, null, null, null);
+        $recipes[] = new Recipe($recipe['id'], $recipe['title'], null, null, $recipe['img_path'], null, null, null, null, null, null, null);
       }
       return $recipes;
     } else {
@@ -218,7 +246,7 @@ class Recipe
     return $this->ingredient_name;
   }
 
-  public function getIngredient_quantity(): ?int
+  public function getIngredient_quantity(): string|int
   {
     return $this->ingredient_quantity;
   }

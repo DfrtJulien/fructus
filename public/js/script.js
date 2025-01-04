@@ -34,7 +34,7 @@ if(document.getElementById('ingredientContainer')){
        const value = i.childNodes[1].alt;
         
       i.classList.add('addQuantity')
-      i.innerHTML += `<label for="${value}">Quantité</label><input type="number" name="${value}" id="${value}"></input>`;
+      i.innerHTML += `<label for="${value}">Quantité</label><input type="text" name="${value}" id="${value}"></input>`;
     }
     })
   })

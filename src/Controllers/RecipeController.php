@@ -32,7 +32,7 @@ class RecipeController extends AbstractController
             $img_path =  $img;
 
 
-            $recipe = new Recipe(null, $title, $description, $recipe, $img_path, $dificulty, $time, $created_at, $id_user, null, null);
+            $recipe = new Recipe(null, $title, $description, $recipe, $img_path, $dificulty, $time, $created_at, $id_user, null, null, null);
             $recipe->addRecipe();
 
 
@@ -45,13 +45,21 @@ class RecipeController extends AbstractController
             $this->addIngredient($ingredientExist);
             $ingredient = $this->ingredients;
 
+            $categoryExist = $this->categoryExist();
+            $this->addCategory($categoryExist);
+            $categorys = $this->category;
 
             foreach ($ingredient as $ingredient => $quantity) {
-              $addIngredient = new Recipe($recipeId, null, null, null, null, null, null, null, null, $ingredient, $quantity);
+              $addIngredient = new Recipe($recipeId, null, null, null, null, null, null, null, null, $ingredient, $quantity, null);
               $addIngredient->addIngredient();
             }
           } else {
             $error = "L'image est trop volumineuse.";
+          }
+
+          foreach ($categorys as $category) {
+            $addCategory = new Recipe($recipeId, null, null, null, null, null, null, null, null, null, null, $category);
+            $addCategory->addCategory();
           }
         }
         require_once(__DIR__ . '/../Views/recipe/addRecipe.view.php');
@@ -64,9 +72,13 @@ class RecipeController extends AbstractController
   public function showAllRecipes()
   {
 
-    $newRecipes = new Recipe(null, null, null, null, null, null, null, null, null, null, null);
+    $newRecipes = new Recipe(null, null, null, null, null, null, null, null, null, null, null, null);
+
+    // toutes les recettes sauf les 3 plus récentes
     $allRecipes = $newRecipes->getAllRecipes();
 
+    // les 3 recettes les plus récente
+    $recentRecipes = $newRecipes->getThreeMostRecentRecipe();
 
     if (isset($_SESSION['user'])) {
       $id_user = htmlspecialchars($_SESSION['user']['id_user']);
@@ -74,7 +86,7 @@ class RecipeController extends AbstractController
 
       foreach ($allRecipes as $recipe) {
         $id_recipe = $recipe->getId();
-        $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
+        $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null, null);
         $isLiked = $recipe->isLikedAllRecipe();
         if ($isLiked) {
           $idLikedRecipes[] = $id_recipe;
@@ -99,7 +111,7 @@ class RecipeController extends AbstractController
       if (isset($_SESSION['user'])) {
         $id_user = htmlspecialchars($_SESSION['user']['id_user']);
       }
-      $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
+      $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null, null);
 
       $newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);
 
@@ -150,7 +162,7 @@ class RecipeController extends AbstractController
 
       $id_user = $_SESSION['user']['id_user'];
 
-      $recipe = new Recipe(null, null, null, null, null, null, null, null, $id_user, null, null);
+      $recipe = new Recipe(null, null, null, null, null, null, null, null, $id_user, null, null, null);
 
       $favoriteRecipes = $recipe->showFavoriteRecipe();
 
@@ -166,7 +178,7 @@ class RecipeController extends AbstractController
 
         $id_recipe = htmlspecialchars($_GET['id_recipe']);
         $id_user = htmlspecialchars($_SESSION['user']['id_user']);
-        $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null);
+        $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null, null);
         $myRecipe = $recipe->getRecipeByid();
 
         $newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);

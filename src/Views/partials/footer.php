@@ -8,7 +8,7 @@
             <i class="fa-brands fa-tiktok"></i>
         </div>
     </div>
-    <p>© Copyright : Julien <?php echo date("Y") ?></p>
+    <p>© Copyright : Julien De Freitas <?php echo date("Y") ?></p>
     <p>Nous contacter</p>
 </footer>
 <script type="text/javascript" src="/public/js/script.js"></script>
