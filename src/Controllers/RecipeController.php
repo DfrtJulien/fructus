@@ -103,7 +103,6 @@ class RecipeController extends AbstractController
 
       $newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);
 
-
       $comment = $newComment->getNumberComment();
       $numberComments = $comment["COUNT(content)"];
 
