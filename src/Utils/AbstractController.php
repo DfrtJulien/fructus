@@ -9,11 +9,13 @@ abstract class AbstractController
   protected array $arraySucces = [];
   protected array $ingredientExist = [];
   protected array $ingredients = [];
+  protected array $categoryExist = [];
+  protected array $category = [];
 
   public function ingredientExist()
   {
     // je crée un tableau contenant tout les ingrédient disponible
-    $checkIngredient = ["eggs", "milk", "sugar", "butter"];
+    $checkIngredient = ["oeuf", "lait", "sucre", "beurre", "farine", "sel", "multifruit", "fraise", "chocolat", "cacao"];
 
     foreach ($checkIngredient as $ingredient) {
       // je fait une boucle et je regarde si je récupère en post la valeur
@@ -34,13 +36,45 @@ abstract class AbstractController
   {
 
     foreach ($array as $value => $quantity) {
-      // je check si le tableau contenant tout mes ingrédient a une valeur nul
+      // je check si le tableau contenant tout mes ingrédient a une valeur null
       if ($quantity) {
         // si ce n'est pas null je l'ajoute a ce tableau enelevant tout les NULL du tableau précédent
         $this->ingredients[$value] = $quantity;
       }
     }
     return $this->ingredients;
+  }
+
+  public function CategoryExist()
+  {
+
+    // je crée un tableau contenant toutes les catégory disponible
+    $checkCategory = ["gateaux", "chocolat", "fruit", "fraise", "tarte", "crepe", "multifruit", "vegan"];
+
+    foreach ($checkCategory as $category) {
+      // je fait une boucle et je regarde si je récupère en post la valeur
+      if (isset($_POST[$category])) {
+        // si il existe je l'ajoute dans un tableau
+        $this->categoryExist[$category] = $_POST[$category];
+      } else {
+        // sinon il est null
+        $this->categoryExist[$category] = null;
+      }
+    }
+
+    return $this->categoryExist;
+  }
+
+  public function addCategory($array)
+  {
+    foreach ($array as $category) {
+      // je check si le tableau contenant tout mes ingrédient a une valeur null
+      if ($category) {
+        // si ce n'est pas null je l'ajoute a ce tableau enelevant tout les NULL du tableau précédent
+        $this->category[] = $category;
+      }
+    }
+    return $this->category;
   }
 
   public function test($array)
