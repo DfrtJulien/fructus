@@ -30,7 +30,7 @@ require_once(__DIR__ . "/partials/head.php");
             <h4>Les meilleurs recettes</h4>
             <p>Essayer nos meilleurs recettes créer par notre communauté !</p>
             <div class="recipeLink">
-                <a href="">Essayer les recettes</a>
+                <a href="/recipes">Essayer les recettes</a>
                 <i class="fa-solid fa-arrow-right"></i>
             </div>
         </div>
@@ -54,7 +54,7 @@ require_once(__DIR__ . "/partials/head.php");
     </div>
     <div class="recipeFilterContainer">
         <div class="recipeFlex">
-            <div class="recipeContainer">
+            <div class="homeRecipeContainer">
                 <a href="">
                     <div class="recipeFilter">
                         <div class="filterLogoContainer">
@@ -66,7 +66,7 @@ require_once(__DIR__ . "/partials/head.php");
                     </div>
                 </a>
             </div>
-            <div class="recipeContainer">
+            <div class="homeRecipeContainer">
                 <a href="">
                     <div class="recipeFilter">
                         <div class="filterLogoContainer">
@@ -78,7 +78,7 @@ require_once(__DIR__ . "/partials/head.php");
                     </div>
                 </a>
             </div>
-            <div class="recipeContainer">
+            <div class="homeRecipeContainer">
                 <a href="">
                     <div class="recipeFilter">
                         <div class="filterLogoContainer">
@@ -90,7 +90,7 @@ require_once(__DIR__ . "/partials/head.php");
                     </div>
                 </a>
             </div>
-            <div class="recipeContainer">
+            <div class="homeRecipeContainer">
                 <a href="">
                     <div class="recipeFilter">
                         <div class="filterLogoContainer">
