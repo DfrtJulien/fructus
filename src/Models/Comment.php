@@ -91,6 +91,24 @@ class Comment extends Recipe
     }
   }
 
+  public function getRecipeMostLiked()
+  {
+    $pdo = DataBase::getConnection();
+    $sql = "SELECT id_recipe, COUNT(*) AS comment_count
+            FROM rating_comment
+            GROUP BY id_recipe
+            ORDER BY comment_count DESC
+            LIMIT 1";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+      return new Comment(null, null, null, null, null, null, $row['id_recipe'], null, null);
+    } else {
+      return null;
+    }
+  }
+
   public function getId(): ?int
   {
     return $this->id;

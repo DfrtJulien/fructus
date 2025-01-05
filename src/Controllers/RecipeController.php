@@ -81,8 +81,13 @@ class RecipeController extends AbstractController
     $recentRecipes = $newRecipes->getThreeMostRecentRecipe();
 
     if (isset($_SESSION['user'])) {
+
       $id_user = htmlspecialchars($_SESSION['user']['id_user']);
+
+
       $idLikedRecipes = [];
+
+      $idLikedRecentRecipes = [];
 
       foreach ($allRecipes as $recipe) {
         $id_recipe = $recipe->getId();
@@ -92,11 +97,28 @@ class RecipeController extends AbstractController
           $idLikedRecipes[] = $id_recipe;
         }
       }
+
+      foreach ($recentRecipes as $recipe) {
+        $id_recipe = $recipe->getId();
+        $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null, null);
+        $isLikedRecentRecipe = $recipe->isLikedAllRecipe();
+        if ($isLikedRecentRecipe) {
+          $idLikedRecentRecipes[] = $id_recipe;
+        }
+      }
+
       $count = count($idLikedRecipes);
+      $countRecentRecipe = count($idLikedRecentRecipes);
     }
 
+    $newComment = new Comment(null, null, null, null, null, null, null, null, null, null);
+    $mostCommentedRecipeId = $newComment->getRecipeMostLiked();
+
+    $idMostCommented = $mostCommentedRecipeId->getId_recipe();
 
 
+    $newRecipe = new Recipe($idMostCommented, null, null, null, null, null, null, null, null, null, null, null);
+    $mostComentedRecipe = $newRecipe->getRecipeByid();
 
 
     require_once(__DIR__ . "/../Views/recipe/showAllRecipes.view.php");
@@ -110,8 +132,11 @@ class RecipeController extends AbstractController
       $id_recipe = htmlspecialchars($_GET['id_recipe']);
       if (isset($_SESSION['user'])) {
         $id_user = htmlspecialchars($_SESSION['user']['id_user']);
+        $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null, null);
+      } else {
+        $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, null, null, null, null);
       }
-      $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null, null);
+
 
       $newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);
 

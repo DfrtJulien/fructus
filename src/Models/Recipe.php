@@ -77,7 +77,17 @@ class Recipe
   public function getAllRecipes()
   {
     $pdo =  DataBase::getConnection();
-    $sql = "SELECT * FROM recipes WHERE created_at < (SELECT created_at FROM recipes ORDER BY created_at DESC LIMIT 1 OFFSET 2);";
+    $sql = "SELECT * 
+FROM recipes r
+WHERE r.id NOT IN (
+    SELECT id
+    FROM (
+        SELECT id
+        FROM recipes
+        ORDER BY id DESC
+        LIMIT 3
+    ) AS temp
+)";
     $statement = $pdo->prepare($sql);
     $statement->execute();
     $fetchedRecipes = $statement->fetchAll(PDO::FETCH_ASSOC);
