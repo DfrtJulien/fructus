@@ -7,11 +7,86 @@ use App\Models\Comment;
 <div class="img-container img-container-headerRecipe">
 	<img src="/public/img/headerRecipes.jpg" alt="image strawberry">
 </div>
+<section class="mostCommentedRecipe">
+	<div>
+		<h3>A la une</h3>
+	</div>
+	<?php
+	if (isset($mostComentedRecipe)) {
+	?>
+		<a href="/recipe?id_recipe=<?= $mostComentedRecipe->getId() ?>">
+			<div class="mostCommentedRecipeFlex">
+				<div class="mostCommentedRecipeImgContainer">
+					<img src="/public/img/<?= $mostComentedRecipe->getImg() ?>" alt="<?= $mostComentedRecipe->getTitle() ?>" class="mostComentedImg">
+					<?php
+					if (isset($_SESSION['user'])) {
+
+						if (in_array($id_recipe, $idLikedRecentRecipes)) {
+					?>
+							<i class="fa-solid fa-heart likeIcon"></i>
+						<?php
+						} else {
+						?>
+							<i class="fa-regular fa-heart likeIcon"></i>
+					<?php
+						}
+					}
+
+					?>
+				</div>
+				<div class="mostComentedRecipeInfo">
+					<h4><?= $mostComentedRecipe->getTitle() ?></h4>
+					<p><?= $mostComentedRecipe->getDescription() ?></p>
+					<?php
+
+					$id_recipe = $mostComentedRecipe->getId();
+					$newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);
+
+					$comment = $newComment->getNumberComment();
+					$numberComments = $comment["COUNT(content)"];
+
+					$sumNote = $newComment->sumArticleNote();
+					$sumNoteInt = intval(reset($sumNote));
+
+					if ($numberComments) {
+						$recipeNote = $sumNoteInt / $numberComments;
+					} else {
+						$recipeNote = 0;
+					}
+					?>
+					<div class="ratingContainer">
+						<?php
+
+						if ($recipeNote) {
+
+						?>
+							<i class="<?= $recipeNote == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $recipeNote < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $recipeNote < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $recipeNote < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<i class="<?= $recipeNote < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+							<a href="/recipe?id_recipe=<?= $mostComentedRecipe->getId() ?>#comments" class="myRecipeNumberComment"><?= $numberComments ?> Avis</a>
+						<?php
+
+						}
+
+						?>
+					</div>
+				</div>
+			</div>
+		</a>
+	<?php
+	}
+	?>
+
+</section>
 <section class="recentRecipes">
 	<div>
 		<h3>Recettes du jours</h3>
 		<div class="flexRecipeContainer">
 			<?php
+
+
 			foreach ($recentRecipes as $recipe) {
 				$id_recipe = $recipe->getId();
 				$newComment = new Comment(null, null, null, null, null, null, $id_recipe, null, null);
@@ -35,7 +110,7 @@ use App\Models\Comment;
 						</div>
 						<?php
 						if (isset($_SESSION['user'])) {
-							if (in_array($id_recipe, $idLikedRecipes)) {
+							if (in_array($id_recipe, $idLikedRecentRecipes)) {
 						?>
 								<i class="fa-solid fa-heart likeIcon"></i>
 							<?php
@@ -106,24 +181,24 @@ use App\Models\Comment;
 							} else {
 							?>
 								<i class="fa-regular fa-heart likeIcon"></i>
-						<?php
+							<?php
 							}
 						}
-						?>
-						<div class="ratingContainer">
-							<?php
-							if ($recipeNote) {
+
+						if ($recipeNote) {
 							?>
+							<div class="ratingContainer">
 								<i class="<?= $recipeNote == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
 								<i class="<?= $recipeNote < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
 								<i class="<?= $recipeNote < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
 								<i class="<?= $recipeNote < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
 								<i class="<?= $recipeNote < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
 								<a href="/recipe?id_recipe=<?= $recipe->getId() ?>#comments" class="myRecipeNumberComment"><?= $numberComments ?> Avis</a>
-							<?php
-							}
-							?>
-						</div>
+							</div>
+						<?php
+						}
+						?>
+
 					</div>
 				</a>
 			<?php

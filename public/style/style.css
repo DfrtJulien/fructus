@@ -439,21 +439,51 @@ img {
 .recipeContainer,
 .likedRecipes,
 .recentRecipes,
+.mostCommentedRecipe,
 #comments {
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-top: 25px;
+	padding-bottom: 20px;
 	width: 93%;
 	margin: auto;
 	display: block;
 }
 
+.mostCommentedRecipeFlex {
+	display: flex;
+	flex-direction: column;
+}
+
+.mostCommentedRecipeImgContainer {
+	width: 100%;
+	max-width: 500px;
+	position: relative;
+}
+
+.mostCommentedRecipeImgContainer img {
+	width: 100%;
+
+}
+
+.mostComentedRecipeInfo h4 {
+	color: var(--main-color);
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 25px;
+}
+
+.mostComentedRecipeInfo p {
+	font-size: 18px;
+}
+
 .allRecipesContainer h3,
-.recentRecipes h3 {
+.recentRecipes h3,
+.mostCommentedRecipe h3 {
 	font-size: 35px;
 }
 
 .allRecipe {
-	margin-top: 45px;
+	margin-top: 25px;
 	position: relative;
 	max-width: 400px;
 }
@@ -489,11 +519,12 @@ img {
 
 .myRecipeTitle {
 	color: var(--main-color);
-	font-size: 35px;
+	font-size: 25px;
+	margin-bottom: 30px;
 }
 
 .myRecipeDescription {
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .myRecipeNumberComment {
@@ -603,7 +634,9 @@ img {
 
 .ingredientContainer {
 	display: flex;
-	justify-content: space-between;
+	flex-wrap: wrap;
+	column-gap: 10px;
+	row-gap: 10px;
 	margin-bottom: 30px;
 }
 
@@ -852,7 +885,7 @@ img {
 	.flexRecipeContainer {
 		flex-direction: row;
 		row-gap: 20px;
-		column-gap: 50px;
+		column-gap: 20px;
 	}
 
 	.imgRecipeContainer {
@@ -863,10 +896,12 @@ img {
 
 	.myRecipeTitle {
 		font-size: 65px;
+		margin-bottom: 40px;
 	}
 
 	.myRecipeDescription {
 		font-size: 25px;
+		margin-top: 30px;
 	}
 
 	.myRecipeFlexContainer {
@@ -1086,12 +1121,53 @@ img {
 
 	/************************************************************** ALL RECIPES  ****************************************/
 
+	.mostCommentedRecipe h3 {
+		margin-bottom: 30px;
+	}
+
+	.mostCommentedRecipeFlex {
+		display: flex;
+		flex-direction: row;
+		column-gap: 45px;
+		align-items: center;
+	}
+
+	.mostCommentedRecipeImgContainer {
+		width: 100%;
+		max-width: 700px;
+		height: 500px;
+	}
+
+	.mostCommentedRecipeImgContainer img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 12px;
+	}
+
+	.mostComentedRecipeInfo h4 {
+		color: var(--main-color);
+		text-align: left;
+		margin-bottom: 20px;
+		font-size: 65px;
+	}
+
+	.mostComentedRecipeInfo p {
+		font-size: 25px;
+	}
+
+	.mostComentedRecipeInfo {
+		max-width: 700px;
+		margin-left: 100px;
+	}
+
 	.allRecipesContainer,
 	.recipeContainer,
 	.likedRecipes,
 	.recentRecipes,
+	.mostCommentedRecipe,
 	#comments {
-		width: 75%;
+		width: 80%;
 	}
 
 	.img-container-headerRecipe {
@@ -1100,6 +1176,7 @@ img {
 
 	.allRecipe {
 		width: 600px;
+		max-width: 450px;
 	}
 
 
@@ -1210,6 +1287,7 @@ img {
 	/************************************** FOOTER *****************************/
 	.myFooter {
 		padding: 45px;
+		margin-top: 25px;
 	}
 
 	.noFavoriteLink {
