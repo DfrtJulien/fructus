@@ -29,4 +29,7 @@ $router->addRoute('/recipeLiked', 'RecipeController', 'showLikedRecipe');
 
 // ajoutez une note et un commentaire a une recette
 $router->addRoute('/addComment', 'RecipeController', 'addComment');
+// modifier le commentaire
+$router->addRoute('/editComment', 'RecipeController', 'editComment');
+
 $router->handleRequest();

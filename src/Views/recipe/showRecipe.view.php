@@ -120,8 +120,9 @@ if ($comments) {
 		<div class="commentsContainer">
 			<?php
 			foreach ($comments as $comment) {
-				$id_user = $comment->getId_user();
-				$fetchNote = new Comment(null, null, null, null, null, $id_user, $id_recipe, null, null);
+				$id__comment_user = $comment->getId_user();
+				$id_comment = $comment->getId();
+				$fetchNote = new Comment(null, null, null, null, null, $id__comment_user, $id_recipe, null, null);
 				$notes = $fetchNote->getNoteByUserId();
 				$userNote = $notes->getRating();
 				$username =  $comment->getUsername();
@@ -140,6 +141,19 @@ if ($comments) {
 						</div>
 					</div>
 					<p class="userComment"><?= $comment->getContent() ?></p>
+					<?php
+					if ($_SESSION['user']['id_user'] == $id__comment_user) {
+					?>
+						<a href="/editComment?id_comment=<?= $comment->getId() ?>" class="editComment">Modifier le commentaire</a>
+					<?php
+					}
+
+					if ($_SESSION['user']['id_user'] == $id__comment_user || $_SESSION['user']['id_role'] == 1) {
+					?>
+						<a href="" class="deleteComment">Supprimer le commentaire</a>
+					<?php
+					}
+					?>
 				</div>
 			<?php
 			}

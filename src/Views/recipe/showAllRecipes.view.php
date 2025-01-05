@@ -13,6 +13,8 @@ use App\Models\Comment;
 	</div>
 	<?php
 	if (isset($mostComentedRecipe)) {
+		$id_recipe = $mostComentedRecipe->getId();
+
 	?>
 		<a href="/recipe?id_recipe=<?= $mostComentedRecipe->getId() ?>">
 			<div class="mostCommentedRecipeFlex">
@@ -21,7 +23,7 @@ use App\Models\Comment;
 					<?php
 					if (isset($_SESSION['user'])) {
 
-						if (in_array($id_recipe, $idLikedRecentRecipes)) {
+						if (in_array($id_recipe, $idLikedMostCommentRecipes)) {
 					?>
 							<i class="fa-solid fa-heart likeIcon"></i>
 						<?php

@@ -109,6 +109,28 @@ class Comment extends Recipe
     }
   }
 
+  public function getCommentById()
+  {
+    $pdo = DataBase::getConnection();
+    $sql = "SELECT `id`, `content`, `rating` FROM rating_comment WHERE id = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->id]);
+    $fetchedComment = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($fetchedComment) {
+      return new Comment(null, $fetchedComment['content'], $fetchedComment['rating'], null, null, null, null, null, null);
+    } else {
+      return null;
+    }
+  }
+
+  public function editComment()
+  {
+    $pdo = DataBase::getConnection();
+    $sql = "UPDATE rating_comment SET `content` = ? , `rating` = ?, `updated_at` = ? WHERE id = ?";
+    $statement = $pdo->prepare($sql);
+    return $statement->execute([$this->content, $this->rating, $this->updated_at, $this->id]);
+  }
+
   public function getId(): ?int
   {
     return $this->id;

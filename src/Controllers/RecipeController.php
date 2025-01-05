@@ -86,8 +86,8 @@ class RecipeController extends AbstractController
 
 
       $idLikedRecipes = [];
-
       $idLikedRecentRecipes = [];
+      $idLikedMostCommentRecipes = [];
 
       foreach ($allRecipes as $recipe) {
         $id_recipe = $recipe->getId();
@@ -109,16 +109,33 @@ class RecipeController extends AbstractController
 
       $count = count($idLikedRecipes);
       $countRecentRecipe = count($idLikedRecentRecipes);
+
+
+
+      $newComment = new Comment(null, null, null, null, null, null, null, null, null, null);
+      $mostCommentedRecipeId = $newComment->getRecipeMostLiked();
+      $idMostCommented = $mostCommentedRecipeId->getId_recipe();
+      $newRecipeMostCommented = new Recipe($idMostCommented, null, null, null, null, null, null, null, $id_user, null, null, null);
+      $mostComentedRecipe = $newRecipeMostCommented->getRecipeByid();
+
+
+      $isLikedMostComent = $newRecipeMostCommented->isLikedAllRecipe();
+
+      if ($isLikedMostComent) {
+        $id_recipe = $newRecipeMostCommented->getId();
+        $idLikedMostCommentRecipes[] = $id_recipe;
+      }
+    } else {
+
+
+
+      $newComment = new Comment(null, null, null, null, null, null, null, null, null, null);
+      $mostCommentedRecipeId = $newComment->getRecipeMostLiked();
+      $idMostCommented = $mostCommentedRecipeId->getId_recipe();
+      $newRecipe = new Recipe($idMostCommented, null, null, null, null, null, null, null, null, null, null, null);
+      $mostComentedRecipe = $newRecipe->getRecipeByid();
     }
 
-    $newComment = new Comment(null, null, null, null, null, null, null, null, null, null);
-    $mostCommentedRecipeId = $newComment->getRecipeMostLiked();
-
-    $idMostCommented = $mostCommentedRecipeId->getId_recipe();
-
-
-    $newRecipe = new Recipe($idMostCommented, null, null, null, null, null, null, null, null, null, null, null);
-    $mostComentedRecipe = $newRecipe->getRecipeByid();
 
 
     require_once(__DIR__ . "/../Views/recipe/showAllRecipes.view.php");
@@ -224,6 +241,7 @@ class RecipeController extends AbstractController
             $comment = new Comment(null, $comment, $rating, $date, null, $id_user, $id_recipe, null, null);
 
             $comment->addNoteAndcomment();
+            $this->redirectToRoute('/');
           }
         }
         require_once(__DIR__ . "/../Views/recipe/addComment.view.php");
@@ -232,6 +250,38 @@ class RecipeController extends AbstractController
       }
     } else {
       $this->redirectToRoute('/login');
+    }
+  }
+
+  public function editComment()
+  {
+    if (isset($_GET['id_comment'])) {
+
+      $id_comment = $_GET['id_comment'];
+
+      $comment = new Comment($id_comment, null, null, null, null, null, null, null, null);
+      $myComment = $comment->getCommentById();
+
+      if (isset($_POST['note'], $_POST['comment'])) {
+        $this->check("note", $_POST['note']);
+        $this->check("comment", $_POST['comment']);
+
+        if (empty($this->arrayError)) {
+          $rating = htmlspecialchars($_POST['note']);
+          $comment = htmlspecialchars($_POST['comment']);
+          $updatedDate =  Date('Y-m-d');
+
+          $comment = new Comment($id_comment, $comment, $rating, null, $updatedDate, null, null, null, null);
+
+          $comment->editComment();
+
+          $this->redirectToRoute('/');
+        }
+      }
+
+      require_once(__DIR__ . "/../Views/recipe/editComment.view.php");
+    } else {
+      $this->redirectToRoute('/404');
     }
   }
 }
