@@ -291,7 +291,8 @@ img {
 
 .form label,
 .addRecipeForm label,
-.addNoteAndRating label {
+.addNoteAndRating label,
+.editNoteAndRating label {
 	width: 100%;
 	padding: 5px 15px;
 	font-size: 18px;
@@ -303,7 +304,9 @@ img {
 .addRecipeForm textarea,
 .addRecipeForm select,
 .addNoteAndRating select,
-.addNoteAndRating textarea {
+.addNoteAndRating textarea,
+.editNoteAndRating select,
+.editNoteAndRating textarea {
 	width: 95%;
 	margin: 0 10px 20px 10px;
 	border: none;
@@ -330,19 +333,21 @@ img {
 }
 
 .registerBtn,
-.addComentBtn {
+.addComentBtn,
+.deleteComment {
 	border: none;
 	width: 100%;
 	background-color: var(--main-color);
 	color: var(--white-clr);
 	font-size: 20px;
-	padding: 10px;
+	padding: 5px 10px;
 	border-radius: 8px;
 	transition: all 0.3s ease;
 }
 
 .registerBtn:hover,
-.addComentBtn:hover {
+.addComentBtn:hover,
+.deleteComment:hover {
 	border: 2px solid var(--main-color);
 	color: var(--main-color);
 	background-color: var(--white-clr);
@@ -384,7 +389,8 @@ img {
 }
 
 .addRecipeForm select,
-.addNoteAndRating select {
+.addNoteAndRating select,
+.editNoteAndRating select {
 	padding: 10px;
 	background-color: var(--main-color);
 	color: white;
@@ -440,6 +446,7 @@ img {
 .likedRecipes,
 .recentRecipes,
 .mostCommentedRecipe,
+.edditCommentContainer,
 #comments {
 	padding-top: 25px;
 	padding-bottom: 20px;
@@ -757,6 +764,7 @@ img {
 
 .comment {
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .userComment {
@@ -764,32 +772,42 @@ img {
 	font-size: 18px;
 }
 
-.addCommentLink {
+.addCommentLink,
+.editComment {
 	margin-left: 10px;
+	font-size: 20px;
 	padding: 5px 10px;
 	border: 1px solid var(--main-color);
 	border-radius: 8px;
 	transition: all 0.5s ease;
 }
 
-.addCommentLink:hover {
+.addCommentLink:hover,
+.editComment:hover {
 	background-color: var(--main-color);
 	color: white;
 }
 
+.editComment {
+	margin-right: 20px;
+}
+
 /*********************************** COMMENT PAGE ************************/
 
-.addNoteAndRating h3 {
+.addNoteAndRating h3,
+.editNoteAndRating h3 {
 	font-size: 22px;
 	margin-bottom: 15px;
 }
 
-.addNoteAndRating label {
+.addNoteAndRating label,
+.editNoteAndRating label {
 	width: 100%;
 	margin-bottom: 10px;
 }
 
-/************************************** FOOTER *****************************/
+
+
 .myFooter {
 	background-color: var(--black-clr) !important;
 	color: var(--white-clr);
@@ -1272,16 +1290,33 @@ img {
 
 	/************************************** RATING  ************************/
 
-	.addNoteAndRating h3 {
+	.addNoteAndRating h3,
+	.editNoteAndRating h3 {
 		font-size: 35px;
 	}
 
-	.addNoteAndRating select {
+	.addNoteAndRating select,
+	.editNoteAndRating select {
 		width: 5%;
 	}
 
 	.addComentBtn {
 		width: 250px;
+	}
+
+	/************************************ EDIT COMMENT  *******************/
+
+	.edditCommentContainer {
+		width: 85%;
+		min-height: 80vh;
+	}
+
+	.editNoteAndRating {
+		width: 50%;
+		margin: auto;
+		background-color: rgba(234, 235, 234, 0.712);
+		border-radius: 12px;
+		padding: 25px;
 	}
 
 	/************************************** FOOTER *****************************/
