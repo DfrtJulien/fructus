@@ -31,5 +31,6 @@ $router->addRoute('/recipeLiked', 'RecipeController', 'showLikedRecipe');
 $router->addRoute('/addComment', 'RecipeController', 'addComment');
 // modifier le commentaire
 $router->addRoute('/editComment', 'RecipeController', 'editComment');
+$router->addRoute('/deleteComment', 'RecipeController', 'deleteComment');
 
 $router->handleRequest();

@@ -150,7 +150,7 @@ if ($comments) {
 
 					if ($_SESSION['user']['id_user'] == $id__comment_user || $_SESSION['user']['id_role'] == 1) {
 					?>
-						<a href="" class="deleteComment">Supprimer le commentaire</a>
+						<a href="/deleteComment?id_comment=<?= $comment->getId() ?>" class="deleteComment">Supprimer le commentaire</a>
 					<?php
 					}
 					?>
