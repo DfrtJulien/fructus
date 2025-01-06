@@ -284,4 +284,15 @@ class RecipeController extends AbstractController
       $this->redirectToRoute('/404');
     }
   }
+
+  public function deleteComment()
+  {
+
+    if (isset($_GET['id_comment'])) {
+      $id_comment = $_GET['id_comment'];
+      $comment = new Comment($id_comment, null, null, null, null, null, null, null, null);
+      $comment->deleteCommentById();
+      $this->redirectToRoute('/');
+    }
+  }
 }

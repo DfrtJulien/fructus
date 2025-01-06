@@ -131,6 +131,15 @@ class Comment extends Recipe
     return $statement->execute([$this->content, $this->rating, $this->updated_at, $this->id]);
   }
 
+
+  public function deleteCommentById()
+  {
+    $pdo = DataBase::getConnection();
+    $sql = "DELETE FROM `rating_comment` WHERE id = ?";
+    $statement = $pdo->prepare($sql);
+    return $statement->execute([$this->id]);
+  }
+
   public function getId(): ?int
   {
     return $this->id;

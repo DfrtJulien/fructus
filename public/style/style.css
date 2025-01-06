@@ -1105,7 +1105,7 @@ img {
 	}
 
 	.recipeFlex {
-		width: 600px;
+		width: 850px;
 	}
 
 	.filterLogo {
@@ -1119,6 +1119,7 @@ img {
 	.homeRecipeContainer,
 	#comments {
 		padding: 20px 55px;
+		width: 350px;
 	}
 
 	/********************************************************* INSCRIPTION ******************************************/
@@ -1322,7 +1323,6 @@ img {
 	/************************************** FOOTER *****************************/
 	.myFooter {
 		padding: 45px;
-		margin-top: 25px;
 	}
 
 	.noFavoriteLink {
