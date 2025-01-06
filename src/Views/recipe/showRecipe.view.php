@@ -142,16 +142,18 @@ if ($comments) {
 					</div>
 					<p class="userComment"><?= $comment->getContent() ?></p>
 					<?php
-					if ($_SESSION['user']['id_user'] == $id__comment_user) {
+					if (isset($_SESSION['user'])) {
+						if ($_SESSION['user']['id_user'] == $id__comment_user) {
 					?>
-						<a href="/editComment?id_comment=<?= $comment->getId() ?>" class="editComment">Modifier le commentaire</a>
-					<?php
-					}
+							<a href="/editComment?id_comment=<?= $comment->getId() ?>" class="editComment">Modifier le commentaire</a>
+						<?php
+						}
 
-					if ($_SESSION['user']['id_user'] == $id__comment_user || $_SESSION['user']['id_role'] == 1) {
-					?>
-						<a href="/deleteComment?id_comment=<?= $comment->getId() ?>" class="deleteComment">Supprimer le commentaire</a>
+						if ($_SESSION['user']['id_user'] == $id__comment_user || $_SESSION['user']['id_role'] == 1) {
+						?>
+							<a href="/deleteComment?id_comment=<?= $comment->getId() ?>" class="deleteComment">Supprimer le commentaire</a>
 					<?php
+						}
 					}
 					?>
 				</div>
