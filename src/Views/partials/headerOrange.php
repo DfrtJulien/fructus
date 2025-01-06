@@ -14,15 +14,15 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg myNavOrange">
+	<nav class="navbar navbar-expand-lg myNavOrange" id="myNav">
 		<div class="container-fluid">
 			<div>
 				<i class="fa-solid fa-bars burger" id="open-menu"></i>
-				<a class="navbar-brand title" href="/"> Fructus</a>
+				<a class="navbar-brand title" href="/" id="darkLink"> Fructus</a>
 			</div>
 			<div class="searchContainer">
 				<input type="text" class="searchInput">
-				<i class="fa-solid fa-magnifying-glass searchIcon"></i>
+				<i class="fa-solid fa-magnifying-glass searchIcon" id="darkLink"></i>
 			</div>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -30,24 +30,24 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item d-flex">
-						<a class="nav-link nav-link-white" href="/recipes">Recettes</a>
+						<a class="nav-link nav-link-white" href="/recipes" id="darkLink">Recettes</a>
 						<?php
 						if (!isset($_SESSION['user'])) {
 						?>
 
-							<a class="nav-link nav-link-white" href="/register">Inscription</a>
-							<a class="nav-link nav-link-white" href="/login">Connexion</a>
+							<a class="nav-link nav-link-white" href="/register" id="darkLink">Inscription</a>
+							<a class="nav-link nav-link-white" href="/login" id="darkLink">Connexion</a>
 					</li>
 				<?php
 						} else {
 				?>
 
-					<a class="nav-link nav-link-white" href="/recipeLiked">Mes Favoris</a>
-					<a class="nav-link nav-link-white" href="/logout">Déconnexion</a>
+					<a class="nav-link nav-link-white" href="/recipeLiked" id="darkLink">Mes Favoris</a>
+					<a class="nav-link nav-link-white" href="/logout" id="darkLink">Déconnexion</a>
 					<?php
 							if ($_SESSION['user']["id_role"] == 1) {
 					?>
-						<a class="nav-link nav-link-white" href="/addRecipe">Ajoutez une recette</a>
+						<a class="nav-link nav-link-white" href="/addRecipe" id="darkLink">Ajoutez une recette</a>
 					<?php
 							}
 					?>

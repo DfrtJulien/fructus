@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg myNav">
+    <nav class="navbar navbar-expand-lg myNav" id="myNav">
         <div class="container-fluid">
             <div>
                 <i class="fa-solid fa-bars burger" id="open-menu"></i>
