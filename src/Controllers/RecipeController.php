@@ -295,4 +295,30 @@ class RecipeController extends AbstractController
       $this->redirectToRoute('/');
     }
   }
+
+  public function showRecipeByFilter()
+  {
+    if (isset($_GET['category'])) {
+      $category = htmlspecialchars($_GET['category']);
+
+      $recipe = new Recipe(null, null, null, null, null, null, null, null, null, null, null, $category);
+
+      $filteredRecipes = $recipe->getRecipeByCategory();
+      $isLikedRecipes = [];
+      if (isset($_SESSION['user'])) {
+        $id_user = htmlspecialchars($_SESSION['user']['id_user']);
+
+        foreach ($filteredRecipes as $recipe) {
+          $id_recipe = $recipe->getId();
+          $recipe = new Recipe($id_recipe, null, null, null, null, null, null, null, $id_user, null, null, null);
+          $isLiked = $recipe->isLikedAllRecipe();
+          if ($isLiked) {
+            $idLikedRecipes[] = $id_recipe;
+          }
+        }
+      }
+
+      require_once(__DIR__ . "/../Views/recipe/recipeFilter.view.php");
+    }
+  }
 }

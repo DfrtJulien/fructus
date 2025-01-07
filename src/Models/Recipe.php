@@ -206,6 +206,24 @@ WHERE r.id NOT IN (
     }
   }
 
+  public function getRecipeByCategory()
+  {
+    $pdo =  DataBase::getConnection();
+    $sql = "SELECT `recipes`.`id`, `recipes`.`title`, `recipes`.`img_path`, `category`.`category` FROM `recipes` LEFT JOIN `category` ON `recipes`.`id` = `category`.`id_recipe` WHERE `category`.`category` = ?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$this->category]);
+    $fetchedRecipes = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $recipes = [];
+    if ($fetchedRecipes) {
+      foreach ($fetchedRecipes as $recipe) {
+        $recipes[] = new Recipe($recipe['id'], $recipe['title'], null, null, $recipe['img_path'], null, null, null, null, null, null, $recipe['category']);
+      }
+      return $recipes;
+    } else {
+      return null;
+    }
+  }
+
   public function getId(): ?int
   {
     return $this->id;
