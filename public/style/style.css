@@ -683,7 +683,8 @@ img {
 	flex-direction: column;
 }
 
-.likedRecipe {
+.likedRecipe,
+.recentRecipe {
 	position: relative;
 	margin-bottom: 15px;
 	max-width: 350px;
@@ -697,7 +698,8 @@ img {
 	height: 100%;
 }
 
-.likedRecipeInfo {
+.likedRecipeInfo,
+.recentRecipeInfo {
 	background-color: #111111b6;
 	padding: 5px;
 	position: absolute;
@@ -707,12 +709,14 @@ img {
 	height: 86px;
 }
 
-.likedRecipeInfo h2 {
+.likedRecipeInfo h2,
+.recentRecipe h4 {
 	color: var(--main-color);
 	text-align: center;
 }
 
-.likedRecipeNote {
+.likedRecipeNote,
+.ratingContainer {
 	display: flex;
 	justify-content: center;
 }
@@ -721,7 +725,8 @@ img {
 	justify-content: center;
 }
 
-.LikedRecipeComment {
+.LikedRecipeComment,
+.myRecipeNumberComment {
 	color: white;
 }
 
