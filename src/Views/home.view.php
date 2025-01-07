@@ -2,7 +2,7 @@
 require_once(__DIR__ . "/partials/head.php");
 ?>
 
-<section class="hero">
+<section class="hero" id="hero">
     <div class="img-container img-container-header">
         <img src="/public/img/header.jpg" alt="image pancackes">
     </div>
@@ -106,6 +106,6 @@ require_once(__DIR__ . "/partials/head.php");
     </div>
 
 </section>
-
+<a href="#hero"><i class="fa-solid fa-arrow-up arrowUp" id="arrowUp"></i></a>
 <?php
 include_once(__DIR__ . "/partials/footer.php");

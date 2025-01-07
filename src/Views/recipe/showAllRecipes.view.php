@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../partials/head.php");
 use App\Models\Comment;
 ?>
 
-<div class="img-container img-container-headerRecipe">
+<div class="img-container img-container-headerRecipe" id="hero">
 	<img src="/public/img/headerRecipes.jpg" alt="image strawberry">
 </div>
 <section class="mostCommentedRecipe">
@@ -211,7 +211,7 @@ use App\Models\Comment;
 		</div>
 	</div>
 </section>
-
+<a href="#hero"><i class="fa-solid fa-arrow-up arrowUp" id="arrowUp"></i></a>
 
 <?php
 require_once(__DIR__ . "/../partials/footer.php");

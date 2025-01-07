@@ -6,6 +6,10 @@
 	--black-clr: #121212;
 }
 
+body {
+	scroll-behavior: smooth;
+}
+
 * {
 	padding: 0;
 	margin: 0;
@@ -903,6 +907,19 @@ img {
 		padding: 20px 55px;
 	}
 
+	.arrowUp {
+		opacity: 0;
+		transition: all 0.5s;
+		font-size: 20px;
+		color: white;
+		background-color: var(--main-color);
+		padding: 10px 12px;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		right: 20%;
+	}
+
 	/******************************************************************** SHOW ALL RECPIES ***************************************/
 
 	.flexRecipeContainer {
@@ -1345,4 +1362,22 @@ img {
 		font-weight: bold;
 	}
 
+}
+
+.animationNav {
+	transition: all 0.2s ease;
+	animation-fill-mode: forwards;
+	animation: 1s forwards menuDisapear;
+}
+
+@keyframes menuDisapear {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	to {
+		transform: translateY(50px);
+		opacity: 0;
+	}
 }
