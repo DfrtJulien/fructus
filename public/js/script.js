@@ -1,7 +1,6 @@
 const myNav = document.getElementById('myNav');
 const navLinks = document.querySelectorAll('#darkLink');
 
-console.log(navLinks);
 
 if(document.getElementById('open-menu')){
   openMenuIcon = document.getElementById('open-menu');
@@ -63,3 +62,36 @@ function darkLink () {
   this.classList.add('darkLink');
 }
 
+if(document.body.clientWidth > 1200) {
+
+window.addEventListener('scroll', function(e) {
+  if(document.getElementById('arrowUp')){
+
+  const arrowUp = this.document.getElementById('arrowUp');
+  let scrollPosition = window.scrollY;
+  arrowUp.style.opacity = "1";
+  if(scrollPosition >= 400){
+    let top = window.scrollY
+    let calc = top + 350;
+    arrowUp.style.top = `${calc}px`;
+    myNav.classList.add('animationNav');
+  } else {
+    myNav.classList.remove('animationNav');
+    arrowUp.style.opacity = "0";
+  }
+  }
+ 
+  });
+} else {
+
+  window.addEventListener('scroll', function(e) {
+    let scrollPosition = window.scrollY;
+    if(scrollPosition >= 400){
+      myNav.style.transition = "all 0.5s"
+      myNav.style.backgroundColor = "#F88838";
+      
+    } else {
+      myNav.style.backgroundColor = "transparent";
+    }
+    });
+}
