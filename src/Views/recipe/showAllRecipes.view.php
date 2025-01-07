@@ -106,10 +106,8 @@ use App\Models\Comment;
 				}
 			?>
 				<a href="/recipe?id_recipe=<?= $recipe->getId() ?>">
-					<div class="allRecipe">
-						<div class="imgRecipeContainer">
-							<img src="/public/img/<?= $recipe->getImg() ?>" alt="<?= $recipe->getTitle() ?>" class="recipeImg">
-						</div>
+					<div class="allRecipe recentRecipe">
+						<img src="/public/img/<?= $recipe->getImg() ?>" alt="<?= $recipe->getTitle() ?>" class="recipeImg">
 						<?php
 						if (isset($_SESSION['user'])) {
 							if (in_array($id_recipe, $idLikedRecentRecipes)) {
@@ -123,19 +121,23 @@ use App\Models\Comment;
 							}
 						}
 						?>
-						<div class="ratingContainer">
-							<?php
-							if ($recipeNote) {
-							?>
-								<i class="<?= $recipeNote == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-								<i class="<?= $recipeNote < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-								<i class="<?= $recipeNote < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-								<i class="<?= $recipeNote < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-								<i class="<?= $recipeNote < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
-								<a href="/recipe?id_recipe=<?= $recipe->getId() ?>#comments" class="myRecipeNumberComment"><?= $numberComments ?> Avis</a>
-							<?php
-							}
-							?>
+						<div class="recentRecipeInfo">
+							<h4><?= $recipe->getTitle() ?></h4>
+
+							<div class="ratingContainer">
+								<?php
+								if ($recipeNote) {
+								?>
+									<i class="<?= $recipeNote == 0 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+									<i class="<?= $recipeNote < 2 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+									<i class="<?= $recipeNote < 3 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+									<i class="<?= $recipeNote < 4 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+									<i class="<?= $recipeNote < 5 ? 'fa-regular' : 'fa-solid' ?> fa-star ratingIcon"></i>
+									<a href="/recipe?id_recipe=<?= $recipe->getId() ?>#comments" class="myRecipeNumberComment"><?= $numberComments ?> Avis</a>
+								<?php
+								}
+								?>
+							</div>
 						</div>
 					</div>
 				</a>
