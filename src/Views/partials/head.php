@@ -65,17 +65,17 @@
             <div>
                 <h3>Catégory</h3>
                 <ul>
-                    <li><a href="">Gateaux</a></li>
-                    <li><a href="">Crêpes</a></li>
-                    <li><a href="">Pancacke</a></li>
+                    <li><a href="/recipeFilter?category=gateaux"">Gateaux</a></li>
+                    <li><a href=" /recipeFilter?category=crepe"">Crêpes</a></li>
+                    <li><a href="/recipeFilter?category=tarte"">tarte</a></li>
                 </ul>
             </div>
             <div>
                 <h3>Goût</h3>
                 <ul>
-                    <li><a href="">Chocolat</a></li>
-                    <li><a href="">Fraise</a></li>
-                    <li><a href="">Multifruit</a></li>
+                    <li><a href=" /recipeFilter?category=chocolat">Chocolat</a></li>
+                    <li><a href="/recipeFilter?category=fraise">Fraise</a></li>
+                    <li><a href="/recipeFilter?category=multifruit">Multifruit</a></li>
                 </ul>
             </div>
             <i class="fa-solid fa-x close-menu" id="close-menu"></i>
